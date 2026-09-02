@@ -1,0 +1,77 @@
+{
+  "id": "tinyprobe",
+  "platform": "TinyProbe",
+  "manufacturer": "ETH Zürich",
+  "affiliation": "Integrated Systems Laboratory (IIS)",
+  "reference": "vostrikov_tinyprobe_2025",
+  "category": "Pulse-echo imaging",
+  "year": 2025,
+  "transducer": {
+    "channels": 32,
+    "config": "Linear array, beamforming",
+    "field_of_view": "n/a"
+  },
+  "frequency": "up to 15 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "±32 V",
+    "frequency": "up to 15 MHz",
+    "feature": "32 TX beamforming profiles"
+  },
+  "rx": {
+    "channels": 32,
+    "sample_rate": "30 MS/s",
+    "topology": "Full parallel, TGC up to 36 dB"
+  },
+  "controller": "STM32F4 (MCU) + Microsemi Igloo2 (FPGA)",
+  "data_link": "Wi-Fi 4 (21.6 Mbit/s) / Wi-Fi 6 (35.7 Mbit/s)",
+  "specs": {
+    "framerate": "33 Hz (Wi-Fi 4) / 55 Hz (Wi-Fi 6)",
+    "weight": "35 g",
+    "size": "57 × 35 × 20 mm",
+    "power": "0.97 W",
+    "operation": "2 h"
+  },
+  "application": "Blood-flow imaging, muscle and bladder imaging",
+  "description": "Compact 32-channel multi-modal wireless probe supporting A-, B-, M-mode and Doppler. First platform of its size to combine 32-channel TX beamforming with raw RF streaming.",
+  "access": "open-source",
+  "access_detail": "Hardware (CERN-OHL-S 2.0) released; firmware release planned",
+  "paper": "https://doi.org/10.1109/TUFFC.2024.3496474",
+  "github": "https://github.com/pulp-bio/TinyProbe",
+  "website": null,
+  "image": "assets/tinyprobe_title.png",
+  "image_attribution": {
+    "credit": "ETH Zürich — IIS (Vostrikov et al.)",
+    "source_url": "https://github.com/pulp-bio/TinyProbe/blob/main/docs/images/tinyprobe_title.png",
+    "license": "Open source (hardware CERN-OHL-S 2.0; documentation CC-BY-4.0)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": true,
+      "schematics": "open",
+      "gerber": "open",
+      "bom": "open",
+      "license": "CERN-OHL-S 2.0",
+      "reference": "https://github.com/pulp-bio/TinyProbe/tree/main/wifi_6_board",
+      "notes": null
+    },
+    "sw": {
+      "open_source": true,
+      "firmware": "planned",
+      "host_software": "open",
+      "license": "Open-source release planned",
+      "reference": "https://github.com/pulp-bio/TinyProbe",
+      "notes": "Host PC software released; embedded firmware release planned."
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Self-build (no commercial vendor)",
+      "url": null,
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "Build cost not yet published; user assembles from open-source design files. Comparable 32-channel BLE/Wi-Fi imaging probes typically build in the $300–$600 range per probe in small batches."
+    }
+  }
+}

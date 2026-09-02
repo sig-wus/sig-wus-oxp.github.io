@@ -24,7 +24,8 @@ Thumbs.db
 .env.*
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/settings.json
 .idea/
 
 # Editor backups

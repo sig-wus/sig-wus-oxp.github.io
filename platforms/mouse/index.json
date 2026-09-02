@@ -1,0 +1,76 @@
+{
+  "id": "mouse",
+  "platform": "MoUsE",
+  "manufacturer": "Karlsruhe Institute of Technology (KIT)",
+  "affiliation": "Institute for Biomedical Engineering (IBT), Fournelle et al.",
+  "reference": "fournelle_portable_2021",
+  "category": "Pulse-echo imaging",
+  "year": 2021,
+  "transducer": {
+    "channels": 32,
+    "config": "Linear array, beamforming",
+    "field_of_view": "n/a"
+  },
+  "frequency": "0.01–10 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "±100 V",
+    "frequency": "0.01–10 MHz",
+    "feature": "Beamforming"
+  },
+  "rx": {
+    "channels": 32,
+    "sample_rate": "50 MS/s",
+    "topology": "Full parallel"
+  },
+  "controller": "Zynq-7000 (FPGA + ARM) — sequencer + computation",
+  "data_link": "USB (raw, 477 Mbit/s)",
+  "specs": {
+    "framerate": "23 Hz",
+    "weight": "610 g",
+    "size": "184 × 123 × 33 mm",
+    "power": "12 W"
+  },
+  "application": "Portable POCUS, bladder monitoring, wrist/hand tracking, prosthetic control",
+  "description": "Open 32-channel portable POCUS platform with full TX/RX beamforming on FPGA. Has served as a backbone for wrist-tracking and prosthetic-control studies in HMI research.",
+  "access": "research",
+  "access_detail": "Research collaboration only — hardware retained at KIT-IBT",
+  "paper": "https://doi.org/10.3390/s21196481",
+  "github": null,
+  "website": null,
+  "image": "assets/mouse.svg",
+  "image_attribution": {
+    "credit": "Original illustration created for this catalog",
+    "source_url": null,
+    "license": "CC0 / public domain (original work)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": false,
+      "schematics": "closed",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Hardware retained at KIT-IBT; collaborations on request."
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed research firmware."
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Research collaboration only",
+      "url": null,
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "No commercial sales channel; contact KIT-IBT for academic collaboration."
+    }
+  }
+}

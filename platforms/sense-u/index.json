@@ -1,0 +1,75 @@
+{
+  "id": "sense-u",
+  "platform": "TENA SmartCare Bladder Sensor (SENS-U)",
+  "manufacturer": "TENA (Essity)",
+  "affiliation": "Originally Novioscan BV (Netherlands); acquired by Essity / TENA in 2022",
+  "reference": "novioscan_sense-u_2021",
+  "category": "Pulse-echo non-imaging",
+  "year": 2021,
+  "transducer": {
+    "channels": 4,
+    "config": "Integrated A-mode array, skin-friendly adhesive patch",
+    "field_of_view": "30°"
+  },
+  "frequency": "n/a",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "n/a",
+    "frequency": "n/a"
+  },
+  "rx": {
+    "channels": 1,
+    "topology": "4-to-1 MUX"
+  },
+  "controller": "n/a",
+  "data_link": "Bluetooth (raw)",
+  "specs": {
+    "framerate": "n/a",
+    "weight": "55 g",
+    "size": "n/a",
+    "power": "n/a",
+    "operation": "36 h"
+  },
+  "application": "Pediatric bladder monitoring (filling-level tracking, enuresis / incontinence management)",
+  "description": "Wearable adhesive ultrasound patch for the lower abdomen using four A-mode transducers to track bladder wall position over time. Originally developed by Novioscan; now sold globally by TENA (Essity) as the SmartCare Bladder Sensor for pediatric bedwetting management.",
+  "access": "commercial",
+  "access_detail": "Direct-to-consumer pediatric medical device (CE-marked, FDA-cleared); 14-day trial available",
+  "paper": "https://bladdersensor.tena.com/",
+  "github": null,
+  "website": "https://bladdersensor.tena.com/",
+  "image": "assets/sense-u-hero.jpg",
+  "image_attribution": {
+    "credit": "TENA (Essity) / Novioscan",
+    "source_url": "https://bladdersensor.tena.com/",
+    "license": "All rights reserved (vendor product photo; used with attribution for catalog purposes)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": false,
+      "schematics": "closed",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed commercial hardware; patented ultrasound patch design."
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed commercial firmware; companion TENA SmartCare app."
+    },
+    "purchase": {
+      "available": true,
+      "channel": "Direct-to-consumer (TENA online store); 14-day trial",
+      "url": "https://bladdersensor.tena.com/",
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "Sold direct via bladdersensor.tena.com (EUR region); subscription model for ongoing consumables (adhesives, charging cradle)."
+    }
+  }
+}

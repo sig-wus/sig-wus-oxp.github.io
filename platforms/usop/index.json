@@ -1,0 +1,75 @@
+{
+  "id": "usop",
+  "platform": "USoP",
+  "manufacturer": "University of Southern California",
+  "affiliation": "Lin et al., USC — biomedical ultrasound group",
+  "reference": "lin_fully_2023",
+  "category": "Pulse-echo imaging",
+  "year": 2023,
+  "transducer": {
+    "channels": 32,
+    "config": "Flexible linear array",
+    "field_of_view": "n/a"
+  },
+  "frequency": "6 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "up to 100 V",
+    "frequency": "6 MHz"
+  },
+  "rx": {
+    "channels": 1,
+    "sample_rate": "12 MS/s",
+    "topology": "32-to-1 MUX"
+  },
+  "controller": "PIC32 (MCU) — sequencer + computation; flexible PCB",
+  "data_link": "Wi-Fi (raw, 3.4 Mbit/s)",
+  "specs": {
+    "framerate": "31 Hz",
+    "size": "≈100 × 30 × 5 mm",
+    "power": "0.614 W",
+    "operation": "12 h"
+  },
+  "application": "Mobile blood-pressure monitoring",
+  "description": "Fully integrated 32-channel wearable imager built on a flexible PCB. Schematics are published but full reproduction is limited by missing firmware and host software.",
+  "access": "partial",
+  "access_detail": "Schematics overview only — full reproduction hindered by missing firmware",
+  "paper": "https://doi.org/10.1038/s41587-023-01800-0",
+  "github": null,
+  "website": null,
+  "image": "assets/usop.svg",
+  "image_attribution": {
+    "credit": "Original illustration created for this catalog",
+    "source_url": null,
+    "license": "CC0 / public domain (original work)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": true,
+      "schematics": "partial",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": "Schematics overview (Nature Biotechnology supplements)",
+      "reference": "https://doi.org/10.1038/s41587-023-01800-0",
+      "notes": "Only high-level schematics published; Gerber and BOM not released."
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed firmware and host software."
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Research artifact (USC)",
+      "url": null,
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "No commercial path; reproduction hindered by missing firmware."
+    }
+  }
+}

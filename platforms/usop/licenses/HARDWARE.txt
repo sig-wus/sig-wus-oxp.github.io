@@ -1,0 +1,3 @@
+License: Schematics overview (Nature Biotechnology supplements)
+Reference: https://doi.org/10.1038/s41587-023-01800-0
+Notes: Only high-level schematics published; Gerber and BOM not released.

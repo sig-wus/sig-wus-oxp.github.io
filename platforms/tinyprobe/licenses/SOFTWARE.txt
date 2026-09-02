@@ -1,0 +1,3 @@
+License: Open-source release planned
+Reference: https://github.com/pulp-bio/TinyProbe
+Notes: Host PC software released; embedded firmware release planned.

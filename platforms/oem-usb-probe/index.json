@@ -1,0 +1,75 @@
+{
+  "id": "oem-usb-probe",
+  "platform": "OEM USB Probe",
+  "manufacturer": "Vermon SA",
+  "affiliation": "Vermon (Tours, France) — ultrasound transducer OEM",
+  "reference": "vermon_oem_2024",
+  "category": "Pulse-echo imaging",
+  "year": 2024,
+  "transducer": {
+    "channels": 128,
+    "config": "Integrated linear array, beamforming",
+    "field_of_view": "n/a"
+  },
+  "frequency": "up to 10 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "±80 V",
+    "frequency": "up to 10 MHz",
+    "feature": "Beamforming"
+  },
+  "rx": {
+    "channels": 64,
+    "sample_rate": "40 MS/s",
+    "topology": "128-to-64 MUX, beamforming"
+  },
+  "controller": "FPGA — sequencer + computation",
+  "data_link": "USB (beamformed, 1 Gbit/s)",
+  "specs": {
+    "framerate": "1000 Hz",
+    "size": "≈160 × 80 × 40 mm",
+    "power": "4 W"
+  },
+  "application": "Abdomen, brain, heart, vascular, muscles, breast",
+  "description": "Programmable 128-channel USB research probe from Vermon. Supports both raw RF and beamformed streaming for prototyping custom imaging pipelines.",
+  "access": "commercial",
+  "access_detail": "Commercial sales with API and SDK access",
+  "paper": "https://vermon.com/oem-usb-probe",
+  "github": null,
+  "website": "https://vermon.com/oem-usb-probe",
+  "image": "assets/oem-probe.jpg",
+  "image_attribution": {
+    "credit": "Vermon SA",
+    "source_url": "https://vermon.com/oem-usb-probe/",
+    "license": "All rights reserved (vendor product photo; used with attribution)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": false,
+      "schematics": "closed",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed commercial hardware."
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": "Vermon proprietary SDK",
+      "reference": null,
+      "notes": "API + SDK available for beamformed and raw streaming."
+    },
+    "purchase": {
+      "available": true,
+      "channel": "Vermon direct sales",
+      "url": "https://vermon.com/oem-usb-probe",
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "Quote-based. Configurable transducer options; contact Vermon sales."
+    }
+  }
+}

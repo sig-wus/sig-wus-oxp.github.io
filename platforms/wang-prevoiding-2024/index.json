@@ -1,0 +1,72 @@
+{
+  "id": "wang-prevoiding-2024",
+  "platform": "Wang Pre-Voiding Alarm",
+  "manufacturer": "Chinese Academy of Sciences",
+  "affiliation": "Wang et al. — pediatric nocturnal-enuresis alarm",
+  "reference": "wang_pre-voiding_2024",
+  "category": "Pulse-echo non-imaging",
+  "year": 2024,
+  "transducer": {
+    "channels": 11,
+    "config": "Linear A-mode array",
+    "field_of_view": "n/a"
+  },
+  "frequency": "2 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "±10 V",
+    "frequency": "2 MHz, 5-bit Barker coded"
+  },
+  "rx": {
+    "channels": 1,
+    "sample_rate": "40 MS/s",
+    "topology": "11-to-1 MUX"
+  },
+  "controller": "Arduino Due (MCU) — sequencer; PC for computation",
+  "data_link": "USB (raw)",
+  "specs": {
+    "size": "240 × 200 × 20 mm (rough estimate from image)"
+  },
+  "application": "Pre-voiding alarm for nocturnal enuresis in children",
+  "description": "Wearable 11-element ultrasound array with coded excitation and matched filtering. Detects imminent bladder emptying to alert children before wetting.",
+  "access": "research",
+  "access_detail": "Research hardware — no commercial path",
+  "paper": "https://doi.org/10.1109/JTEHM.2024.3457593",
+  "github": null,
+  "website": null,
+  "image": "assets/wang-prevoiding.svg",
+  "image_attribution": {
+    "credit": "Original illustration created for this catalog",
+    "source_url": null,
+    "license": "CC0 / public domain (original work)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": false,
+      "schematics": "closed",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed research hardware at CAS."
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed research firmware."
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Research collaboration only",
+      "url": null,
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "Not sold; collaboration through CAS."
+    }
+  }
+}

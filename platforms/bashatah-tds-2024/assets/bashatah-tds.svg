@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="t-bash d-bash">
+  <title id="t-bash">Bashatah TDS Band</title>
+  <desc id="d-bash">Stylised illustration of the Bashatah et al. time-delay-spectrometry wearable ultrasound band: 4 transducer elements in a flexible strip with chirp waveform overlay.</desc>
+  <defs>
+    <linearGradient id="tds-band" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#2a3a4a"/>
+      <stop offset="1" stop-color="#0d1c2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#eaf1f7"/>
+
+  <!-- arm/leg cross-section -->
+  <ellipse cx="400" cy="340" rx="280" ry="60" fill="#f3c5a6" opacity=".4"/>
+
+  <!-- band body -->
+  <g transform="translate(150,260)">
+    <rect x="0" y="0" width="500" height="80" rx="40" fill="url(#tds-band)" stroke="#0d1c2a" stroke-width="2"/>
+    <!-- 4 elements -->
+    <g fill="#ffb547">
+      <rect x="40" y="25" width="60" height="30" rx="6"/>
+      <rect x="160" y="25" width="60" height="30" rx="6"/>
+      <rect x="280" y="25" width="60" height="30" rx="6"/>
+      <rect x="400" y="25" width="60" height="30" rx="6"/>
+    </g>
+    <text x="500" y="48" font-family="ui-monospace, monospace" font-size="11" fill="#ffd166" text-anchor="end">TMS320F28379D</text>
+  </g>
+
+  <!-- chirp waveform illustration -->
+  <g transform="translate(150,400)" fill="none" stroke="#00629b" stroke-width="2">
+    <path d="M0 0 Q20 -25 40 0 T80 0 T120 0 T160 0 T200 0 T240 0 T280 0 T320 0 T360 0 T400 0 T440 0 T480 0"/>
+    <path d="M0 0 Q30 -35 60 0 T120 0 T180 0 T240 0 T300 0 T360 0 T420 0 T480 0" opacity=".5"/>
+  </g>
+
+  <g font-family="Inter, Arial" fill="#1a2e40">
+    <text x="400" y="120" font-size="34" font-weight="800" text-anchor="middle">Bashatah TDS Band</text>
+    <text x="400" y="148" font-size="16" text-anchor="middle" fill="#51677a">Time-delay-spectrometry wearable ultrasound · 4 ch.</text>
+    <text x="400" y="170" font-size="13" text-anchor="middle" fill="#51677a">Low-voltage (0.5 V) linear-chirp excitation, 3–5 MHz</text>
+    <text x="400" y="445" font-size="14" text-anchor="middle" fill="#51677a">50 Hz · 0.82 W · muscle activity / ground reaction force</text>
+  </g>
+</svg>

@@ -1,0 +1,76 @@
+{
+  "id": "wulpus",
+  "platform": "WULPUS",
+  "manufacturer": "ETH Zürich",
+  "affiliation": "Integrated Systems Laboratory (IIS) & BSSE group",
+  "reference": "frey_wulpus_2022",
+  "category": "Pulse-echo non-imaging",
+  "year": 2022,
+  "transducer": {
+    "channels": 8,
+    "config": "Wristband A-mode array",
+    "field_of_view": "n/a"
+  },
+  "frequency": "up to 4 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "15 V",
+    "frequency": "up to 4 MHz"
+  },
+  "rx": {
+    "channels": 1,
+    "sample_rate": "8 MS/s",
+    "topology": "8-to-1 MUX"
+  },
+  "controller": "MSP430FR5043 (SoC) — sequencer + on-device ML",
+  "data_link": "Bluetooth LE (gestures + raw, 300 kbit/s)",
+  "specs": {
+    "framerate": "50 Hz",
+    "weight": "13 g",
+    "size": "46 × 25 × 13 mm",
+    "power": "0.028 W (22 mW)",
+    "operation": "3 days"
+  },
+  "application": "Hand-gesture HMI, carotid monitoring, EMG fusion, respiration",
+  "description": "Reference ultra-low-power wearable ultrasound platform. Two PCBs (acquisition + high-voltage) deliver eight A-mode channels, on-device gesture classification, and multi-day battery life on a coin cell.",
+  "access": "open-source",
+  "access_detail": "Hardware (CERN-OHL-S 2.0) + firmware + host software (BSD-3-Clause)",
+  "paper": "https://doi.org/10.1109/IUS54386.2022.9958156",
+  "github": "https://github.com/pulp-bio/wulpus",
+  "website": "https://wulpus.ethz.ch",
+  "image": "assets/wulpus_main.png",
+  "image_attribution": {
+    "credit": "ETH Zürich — IIS / BSSE (Vostrikov et al.)",
+    "source_url": "https://github.com/pulp-bio/wulpus/blob/main/docs/images/wulpus_main.png",
+    "license": "Open source (hardware CERN-OHL-S 2.0; documentation CC-BY-4.0)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": true,
+      "schematics": "open",
+      "gerber": "open",
+      "bom": "open",
+      "license": "CERN-OHL-S 2.0",
+      "reference": "https://github.com/pulp-bio/wulpus/tree/main/hw",
+      "notes": null
+    },
+    "sw": {
+      "open_source": true,
+      "firmware": "open",
+      "host_software": "open",
+      "license": "BSD-3-Clause",
+      "reference": "https://github.com/pulp-bio/wulpus/tree/main/fw",
+      "notes": null
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Self-build only (no commercial vendor)",
+      "url": null,
+      "price_usd": 175,
+      "price_eur": 165,
+      "price_note": "Build cost per probe: ~150–200 USD in batches of 10–20, per the WULPUS user manual (BOM + PCB + assembly). User assembles from open-source design files."
+    }
+  }
+}

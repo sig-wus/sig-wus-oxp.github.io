@@ -1,0 +1,74 @@
+{
+  "id": "flopatch",
+  "platform": "FloPatch",
+  "manufacturer": "Flosonics Medical",
+  "affiliation": "Flosonics Medical (Toronto, Canada)",
+  "reference": "flosonics_2025",
+  "category": "Non-pulse-echo (continuous wave Doppler)",
+  "year": 2022,
+  "transducer": {
+    "channels": 2,
+    "config": "Integrated continuous-wave Doppler, 60° angle",
+    "field_of_view": "≈23 mm width"
+  },
+  "frequency": "4 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "n/a",
+    "frequency": "4 MHz continuous wave",
+    "feature": "Single TX channel"
+  },
+  "rx": {
+    "channels": 1,
+    "topology": "Single RX channel"
+  },
+  "controller": "n/a",
+  "data_link": "Bluetooth (raw Doppler)",
+  "specs": {
+    "weight": "22 g",
+    "size": "54 × 35 × 18 mm",
+    "operation": "180 min"
+  },
+  "application": "Carotid blood-flow monitoring, hemodynamic assessment",
+  "description": "First wireless, wearable Doppler ultrasound patch for non-invasive real-time hemodynamic assessment in clinical and pre-clinical settings.",
+  "access": "commercial",
+  "access_detail": "FDA-cleared Class II medical device; CE-marked",
+  "paper": "https://doi.org/10.1038/s41598-021-87116-y",
+  "github": null,
+  "website": "https://flosonicsmedical.com",
+  "image": "assets/flopatch.jpg",
+  "image_attribution": {
+    "credit": "Flosonics Medical",
+    "source_url": "https://flosonicsmedical.com/flopatch/",
+    "license": "All rights reserved (vendor product photo; used with attribution)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": false,
+      "schematics": "closed",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed commercial hardware."
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed commercial firmware."
+    },
+    "purchase": {
+      "available": true,
+      "channel": "Flosonics Medical (clinical sales / hospital procurement)",
+      "url": "https://flosonicsmedical.com",
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "Sold to hospitals and clinical teams; contact Flosonics for procurement pricing. FDA-cleared Class II device."
+    }
+  }
+}

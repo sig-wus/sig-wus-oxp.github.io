@@ -1,0 +1,74 @@
+{
+  "id": "bashatah-tds-2024",
+  "platform": "Bashatah TDS Band",
+  "manufacturer": "George Mason University",
+  "affiliation": "Bashatah et al., GMU / UMD — wearable time-delay-spectrometry band",
+  "reference": "bashatah_wearable_2024",
+  "category": "Pulse-echo non-imaging",
+  "year": 2024,
+  "transducer": {
+    "channels": 4,
+    "config": "Linear-band A-mode array",
+    "field_of_view": "n/a"
+  },
+  "frequency": "3–5 MHz (chirp sweep)",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "0.5 V",
+    "frequency": "3–5 MHz (10 ms linear chirp)"
+  },
+  "rx": {
+    "channels": 4,
+    "sample_rate": "40 kS/s",
+    "topology": "4-channel demodulator"
+  },
+  "controller": "TMS320F28379D (MCU) — sequencer + computation",
+  "data_link": "USB (A-mode, 0.92 Mbit/s)",
+  "specs": {
+    "framerate": "50 Hz",
+    "size": "100 × 200 × 20 mm",
+    "power": "0.82 W"
+  },
+  "application": "Muscle activity monitoring, ground reaction force prediction",
+  "description": "Low-voltage time-delay-spectrometry (TDS) wearable ultrasound band. Uses linear-frequency-modulated chirps and synchronous demodulation to recover high-SNR A-mode data at safe drive voltages.",
+  "access": "research",
+  "access_detail": "Research hardware — no commercial path",
+  "paper": "https://doi.org/10.1109/TBME.2024.3414419",
+  "github": null,
+  "website": null,
+  "image": "assets/bashatah-tds.svg",
+  "image_attribution": {
+    "credit": "Original illustration created for this catalog",
+    "source_url": null,
+    "license": "CC0 / public domain (original work)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": false,
+      "schematics": "closed",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed research hardware."
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed research firmware."
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Research collaboration only",
+      "url": null,
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "Not sold; collaboration through the Sikdar lab at GMU."
+    }
+  }
+}

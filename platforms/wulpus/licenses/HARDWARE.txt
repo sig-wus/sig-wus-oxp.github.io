@@ -1,0 +1,3 @@
+License: CERN-OHL-S 2.0
+Reference: https://github.com/pulp-bio/wulpus/tree/main/hw
+Notes: n/a

@@ -1,6 +1,8 @@
 // main.js — SIG-WUS X-change catalog renderer
-// Fetches JSON, normalizes, populates filters, renders cards, and shows detail dialog.
+// Loads platforms/index.json, then each platforms/<id>/index.json.
 import Fuse from './vendor/fuse.min.mjs';
+
+const CATALOG_INDEX = 'platforms/index.json';
 
 
 const FUSE_OPTIONS = {
@@ -544,20 +546,59 @@ function closeDetail() {
   if (els.detailDialog.open) els.detailDialog.close();
 }
 
-// -- bootstrap -------------------------------------------------------------
-async function init() {
+// -- catalog load ----------------------------------------------------------
+
+async function fetchJSON(url) {
   let resp;
   try {
-    resp = await fetch('data/platforms.json', { cache: 'no-cache' });
+    resp = await fetch(url, { cache: 'no-cache' });
   } catch (err) {
-    showError('Network error: ' + err.message);
-    return;
+    throw new Error(`${url}: ${err.message}`);
   }
   if (!resp.ok) {
-    showError(`HTTP ${resp.status} ${resp.statusText}`);
+    throw new Error(`${url}: HTTP ${resp.status} ${resp.statusText}`);
+  }
+  try {
+    return await resp.json();
+  } catch (err) {
+    throw new Error(`${url}: invalid JSON`);
+  }
+}
+
+function resolveImage(p) {
+  const img = p.image;
+  if (!img) return p;
+  if (/^(https?:|data:)/i.test(img) || img.startsWith('/') || img.startsWith('platforms/')) {
+    return p;
+  }
+  p.image = `platforms/${p.id}/${img}`;
+  return p;
+}
+
+async function loadCatalog() {
+  const ids = await fetchJSON(CATALOG_INDEX);
+  if (!Array.isArray(ids) || ids.length === 0) {
+    throw new Error('platforms/index.json must be a non-empty list of platform ids');
+  }
+  return Promise.all(ids.map(async (id) => {
+    if (typeof id !== 'string' || !id) {
+      throw new Error('platforms/index.json contains a non-string id');
+    }
+    const p = await fetchJSON(`platforms/${encodeURIComponent(id)}/index.json`);
+    if (!p.id) p.id = id;
+    return resolveImage(p);
+  }));
+}
+
+// -- bootstrap -------------------------------------------------------------
+async function init() {
+  let platforms;
+  try {
+    platforms = await loadCatalog();
+  } catch (err) {
+    showError(err.message);
     return;
   }
-  const platforms = await resp.json();
   STATE.platforms = platforms;
   STATE.fuse = new Fuse(platforms, FUSE_OPTIONS);
 

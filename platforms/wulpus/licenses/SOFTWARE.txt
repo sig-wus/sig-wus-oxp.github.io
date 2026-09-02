@@ -1,0 +1,3 @@
+License: BSD-3-Clause
+Reference: https://github.com/pulp-bio/wulpus/tree/main/fw
+Notes: n/a

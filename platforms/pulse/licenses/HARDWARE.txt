@@ -1,0 +1,3 @@
+License: Open-source release planned
+Reference: https://github.com/alex-damian/pulse
+Notes: Full hardware release expected in a future repository update.

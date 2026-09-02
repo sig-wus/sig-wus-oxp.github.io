@@ -1,0 +1,3 @@
+License: Vermon proprietary SDK
+Reference: n/a
+Notes: API + SDK available for beamformed and raw streaming.

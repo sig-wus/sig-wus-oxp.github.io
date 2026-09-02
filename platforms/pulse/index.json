@@ -1,0 +1,77 @@
+{
+  "id": "pulse",
+  "platform": "PuLsE",
+  "manufacturer": "ETH Zürich",
+  "affiliation": "Integrated Systems Laboratory (IIS)",
+  "reference": "giordano_pulse_2025",
+  "category": "Pulse-echo non-imaging",
+  "year": 2025,
+  "transducer": {
+    "channels": 1,
+    "config": "Wrist-worn single-channel probe",
+    "field_of_view": "n/a"
+  },
+  "frequency": "up to 10 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "15 V",
+    "frequency": "up to 10 MHz"
+  },
+  "rx": {
+    "channels": 1,
+    "sample_rate": "4 MS/s",
+    "topology": "Analog envelope compression"
+  },
+  "controller": "STM32L496 (MCU) — sequencer, computation, analog rectify/filter",
+  "data_link": "Bluetooth LE (heart rate, 300 kbit/s)",
+  "specs": {
+    "framerate": "25 Hz",
+    "latency": "71 ms",
+    "power": "0.0058 W (5.8 mW)",
+    "operation": "7 days",
+    "weight": "15 g (planned)",
+    "size": "40 mm diameter (planned)"
+  },
+  "application": "Continuous wrist heart-rate monitoring",
+  "description": "Single-channel wrist pulse monitor that pushes power consumption below 6 mW by combining analog envelope detection with a low-power STM32L4. Demonstrates heart-rate extraction at >1 week battery life.",
+  "access": "open-source",
+  "access_detail": "Open-source release planned (hardware, firmware, host software)",
+  "paper": "https://doi.org/10.1109/JIOT.2025.3581380",
+  "github": "https://github.com/alex-damian/pulse",
+  "website": null,
+  "image": "assets/pulse.svg",
+  "image_attribution": {
+    "credit": "Original illustration created for this catalog",
+    "source_url": null,
+    "license": "CC0 / public domain (original work)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": true,
+      "schematics": "planned",
+      "gerber": "planned",
+      "bom": "planned",
+      "license": "Open-source release planned",
+      "reference": "https://github.com/alex-damian/pulse",
+      "notes": "Full hardware release expected in a future repository update."
+    },
+    "sw": {
+      "open_source": true,
+      "firmware": "planned",
+      "host_software": "open",
+      "license": "Open-source release planned",
+      "reference": "https://github.com/alex-damian/pulse",
+      "notes": "Firmware release pending; host-side processing scripts already published."
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Pre-commercial research prototype",
+      "url": null,
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "Not yet sold; open-source release in progress."
+    }
+  }
+}

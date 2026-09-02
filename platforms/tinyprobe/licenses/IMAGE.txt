@@ -1,0 +1,4 @@
+Credit: ETH Zürich — IIS (Vostrikov et al.)
+License: Open source (hardware CERN-OHL-S 2.0; documentation CC-BY-4.0)
+Source: https://github.com/pulp-bio/TinyProbe/blob/main/docs/images/tinyprobe_title.png
+Retrieved: 2026-08

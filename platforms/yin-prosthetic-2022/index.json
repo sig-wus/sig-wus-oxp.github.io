@@ -1,0 +1,73 @@
+{
+  "id": "yin-prosthetic-2022",
+  "platform": "Yin Prosthetic Wristband",
+  "manufacturer": "University of Science and Technology Beijing",
+  "affiliation": "Yin et al., USTB — WMAUS derivative for prosthetic control",
+  "reference": "yin_wearable_2022-1",
+  "category": "Pulse-echo non-imaging",
+  "year": 2022,
+  "transducer": {
+    "channels": 4,
+    "config": "Wristband A-mode array",
+    "field_of_view": "n/a"
+  },
+  "frequency": "1 MHz",
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "±50 V",
+    "frequency": "1 MHz"
+  },
+  "rx": {
+    "channels": 1,
+    "sample_rate": "2.4 MS/s",
+    "topology": "4-to-1 MUX"
+  },
+  "controller": "STM32F7 (MCU) — sequencer + computation",
+  "data_link": "Ethernet / Wi-Fi (raw, 1 Mbit/s)",
+  "specs": {
+    "weight": "85 g (excl. battery)",
+    "operation": "3.5 h"
+  },
+  "application": "Real-time prosthetic hand control from forearm muscle activity",
+  "description": "Wristband with four ultrasound transducers driven by an STM32F7. Closely integrated derivative of the WMAUS platform, purpose-built for real-time prosthetic hand control via continuous muscle-activity monitoring.",
+  "access": "research",
+  "access_detail": "Research hardware — no commercial path",
+  "paper": "https://doi.org/10.1109/JBHI.2022.3203084",
+  "github": null,
+  "website": null,
+  "image": "assets/yin-prosthetic.svg",
+  "image_attribution": {
+    "credit": "Original illustration created for this catalog",
+    "source_url": null,
+    "license": "CC0 / public domain (original work)",
+    "retrieved": "2026-08"
+  },
+  "availability": {
+    "hw": {
+      "open_source": false,
+      "schematics": "closed",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed research hardware at USTB."
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Closed research firmware."
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Research collaboration only",
+      "url": null,
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "Not sold; academic collaboration through USTB."
+    }
+  }
+}

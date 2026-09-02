@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["platforms/*/index.json"],
+      "url": "./platforms/_schema.json"
+    }
+  ]
+}
