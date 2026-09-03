@@ -11,7 +11,6 @@
     "config": "Linear array, beamforming",
     "field_of_view": "n/a"
   },
-  "frequency": "0.01–10 MHz",
   "depth": "n/a",
   "resolution": "n/a",
   "tx": {

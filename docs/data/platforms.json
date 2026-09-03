@@ -12,7 +12,6 @@
       "config": "Integrated A-mode array, skin-friendly adhesive patch",
       "field_of_view": "30\u00b0"
     },
-    "frequency": "n/a",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -87,7 +86,6 @@
       "config": "Wristband A-mode array",
       "field_of_view": "n/a"
     },
-    "frequency": "5 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -163,7 +161,6 @@
       "config": "Wristband A-mode array",
       "field_of_view": "n/a"
     },
-    "frequency": "up to 4 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -239,7 +236,6 @@
       "config": "Wrist-worn single-channel probe",
       "field_of_view": "n/a"
     },
-    "frequency": "up to 10 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -316,7 +312,6 @@
       "config": "Linear array, beamforming",
       "field_of_view": "n/a"
     },
-    "frequency": "0.01\u201310 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -392,7 +387,6 @@
       "config": "Integrated linear array, beamforming",
       "field_of_view": "n/a"
     },
-    "frequency": "up to 10 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -467,7 +461,6 @@
       "config": "Flexible linear array",
       "field_of_view": "n/a"
     },
-    "frequency": "6 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -542,7 +535,6 @@
       "config": "Linear array, beamforming",
       "field_of_view": "n/a"
     },
-    "frequency": "up to 15 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -619,7 +611,6 @@
       "config": "Integrated continuous-wave Doppler, 60\u00b0 angle",
       "field_of_view": "\u224823 mm width"
     },
-    "frequency": "4 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -693,7 +684,6 @@
       "config": "Wristband A-mode array",
       "field_of_view": "n/a"
     },
-    "frequency": "1 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
@@ -766,12 +756,11 @@
       "config": "Linear-band A-mode array",
       "field_of_view": "n/a"
     },
-    "frequency": "3\u20135 MHz (chirp sweep)",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {
       "voltage": "0.5 V",
-      "frequency": "3\u20135 MHz (10 ms linear chirp)"
+      "frequency": "3\u20135 MHz (chirp sweep)"
     },
     "rx": {
       "channels": 4,
@@ -840,7 +829,6 @@
       "config": "Linear A-mode array",
       "field_of_view": "n/a"
     },
-    "frequency": "2 MHz",
     "depth": "n/a",
     "resolution": "n/a",
     "tx": {

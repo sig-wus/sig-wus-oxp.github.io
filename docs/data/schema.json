@@ -42,7 +42,6 @@
         "field_of_view": { "type": "string" }
       }
     },
-    "frequency": { "type": "string" },
     "depth": { "type": "string" },
     "resolution": { "type": "string" },
     "tx": {
