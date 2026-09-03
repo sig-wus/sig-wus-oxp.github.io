@@ -24,10 +24,10 @@ matches the BibTeX key in the source paper.
 
 ## Adding a new platform
 
-1. Open `data/platforms.json` and add a new object that conforms to
-   `data/schema.json`. The required fields are: `id`, `platform`, `manufacturer`,
-   `category`, `transducer`, `tx`, `rx`, `specs`, `application`, `access`,
-   `availability`.
+1. Create a new folder `platforms/<id>/` and add `platforms/<id>/index.json`
+   conforming to `platforms/_schema.json`. The required fields are: `id`,
+   `platform`, `manufacturer`, `category`, `transducer`, `tx`, `rx`, `specs`,
+   `application`, `access`, `availability`.
 2. Cite the primary source:
    - `paper` — DOI URL of the publication (e.g. `https://doi.org/10.1109/...`).
    - `reference` — BibTeX key matching the source paper.
@@ -48,14 +48,18 @@ matches the BibTeX key in the source paper.
    }
    ```
    Use `source_url: null` for original illustrations you create yourself. Place the
-   image under `assets/devices/<platform-id>.<ext>` and reference it from the
-   `image` field.
-5. Validate the entry locally (see below) and open a Pull Request against `main`.
+   image under `platforms/<id>/assets/<filename>` and reference it from the
+   `image` field as `assets/<filename>`.
+5. Add `licenses/IMAGE.txt` under the same platform folder. Add
+   `licenses/HARDWARE.txt` and `licenses/SOFTWARE.txt` when the entry includes
+   corresponding source-license information.
+6. Append the new id to `platforms/index.json`.
+7. Validate the entry locally (see below) and open a Pull Request against `main`.
 
 ## Updating an existing entry
-- Locate the entry by `platform` name (or `id`).
-- Edit the fields you need to change.
-- If you replace the image, update `image_attribution` to match.
+- Edit `platforms/<id>/index.json`.
+- If you replace the image, update the platform-local `assets/` file and
+  `image_attribution` to match.
 - Run validation, commit, and submit a PR.
 
 ## Image attribution policy
@@ -86,8 +90,8 @@ new SVG illustration and mark it CC0.
 
 To add a new field to platform entries:
 
-1. Edit `data/schema.json` to declare the new property with type and description.
-2. Add the property to existing entries in `data/platforms.json`.
+1. Edit `platforms/_schema.json` to declare the new property with type and description.
+2. Add the property to existing entries in `platforms/<id>/index.json`.
 3. If the UI should filter or display the field, update `main.js`.
 4. Run the validation script and the headless smoke test (see below).
 
@@ -96,11 +100,15 @@ To add a new field to platform entries:
 ```bash
 # JSON schema validation (uses uv for one-off Python deps)
 uv run --with jsonschema -- python -c "
-import json, jsonschema
-schema = json.load(open('data/schema.json'))
-data   = json.load(open('data/platforms.json'))
-jsonschema.validate(data, schema=schema)
-print('Schema OK')
+import json, jsonschema, pathlib
+root = pathlib.Path('.')
+schema = json.load(open(root / 'platforms' / '_schema.json'))
+ids = json.load(open(root / 'platforms' / 'index.json'))
+for platform_id in ids:
+    path = root / 'platforms' / platform_id / 'index.json'
+    entry = json.load(open(path))
+    jsonschema.validate(entry, schema=schema)
+print(f'Schema OK for {len(ids)} platform entries')
 "
 ```
 
@@ -128,6 +136,5 @@ detail dialog should display the correct image attribution.
 ## Attribution changes
 
 To amend an attribution entry (wrong credit, broken source URL, etc.), edit the
-`image_attribution` object of the relevant entry in `data/platforms.json` and
-submit a PR with the corrected field. The repository's `ATTRIBUTION.md` is
-generated from these records.
+`image_attribution` object in the relevant `platforms/<id>/index.json` and
+submit a PR with the corrected field. Update `ATTRIBUTION.md` in the same change.

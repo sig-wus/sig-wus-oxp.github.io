@@ -11,7 +11,7 @@ via a client-side parametric search, filters, and a detail dialog.
 2. **Easy deployment** — the site is a static HTML/CSS/JS bundle that can be served directly
    from GitHub Pages.
 3. **Open contribution** — anyone can add or update a platform entry by editing
-   `data/platforms.json` and submitting a pull request.
+   its own `platforms/<id>/index.json` file and submitting a pull request.
 
 ## Repository layout
 ```
@@ -20,12 +20,17 @@ via a client-side parametric search, filters, and a detail dialog.
 ├── styles.css
 ├── main.js
 ├── vendor/               # Locally-vendored dependencies (Fuse.js)
-├── data/                 # Canonical JSON catalog and schema
-│   ├── platforms.json
-│   └── schema.json
+├── platforms/
+│   ├── index.json        # Ordered list of platform ids
+│   ├── _schema.json      # JSON schema for a single platform entry
+│   └── <id>/
+│       ├── index.json    # Platform metadata
+│       ├── assets/       # Platform-local illustrations / photos
+│       └── licenses/     # Image / hardware / software notices
 └── assets/
     ├── logo.svg
-    └── devices/          # Per-platform illustrations / photos
+    ├── preview.png
+    └── screenshot.webp
 ```
 
 ## Quick start (local development)
@@ -35,12 +40,13 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory .
 # Open http://127.0.0.1:8000 in a browser to view the UI
 ```
 
-The page loads the platform data from `data/platforms.json` and finds Fuse.js under `vendor/`.
+The page loads platform ids from `platforms/index.json`, then each
+`platforms/<id>/index.json`, and finds Fuse.js under `vendor/`.
 
 ## Adding new platforms
 See **[CONTRIBUTING.md](CONTRIBUTING.md) for the workflow. Each entry follows the JSON schema
-in `data/schema.json` and should ideally reference either a real device photo under
-`assets/devices/` (relative path) or a custom SVG illustration.
+in `platforms/_schema.json` and stores its metadata, media, and notices inside
+`platforms/<id>/`.
 
 ## Deployment
 **GitHub Pages.** The repository root is the published site; `.nojekyll` disables
@@ -65,7 +71,7 @@ and the detail dialog.
 ## License
 This project is licensed under the Apache License 2.0 — see the `LICENSE` file.
 
-Device illustrations in `assets/devices/` are either:
+Device illustrations in `platforms/<id>/assets/` are either:
 * Original SVGs created for this project, or
 * Photos sourced from open repositories of the device authors (WULPUS, TinyProbe, PuLsE),
   or

@@ -32,7 +32,7 @@ from:
 > **IEEE Reviews in Biomedical Engineering**, 2026.
 > DOI: [10.1109/RBME.2026.3664011](https://doi.org/10.1109/RBME.2026.3664011)
 
-Every `paper` field in `data/platforms.json` resolves to the DOI or canonical URL of the
+Every `paper` field in `platforms/<id>/index.json` resolves to the DOI or canonical URL of the
 publication that first described the platform (verified against the review paper's
 `literature.bib`).
 
@@ -54,5 +54,5 @@ Mention of these products is for catalog completeness and constitutes nominative
 
 ## Attribution changes
 
-To request changes to an attribution entry, open an issue or pull request against
-`data/platforms.json` and edit the `image_attribution` object for the relevant entry.
+To request changes to an attribution entry, open an issue or pull request and edit the
+`image_attribution` object in the relevant `platforms/<id>/index.json` file.
