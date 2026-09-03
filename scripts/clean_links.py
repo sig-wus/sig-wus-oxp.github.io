@@ -1,22 +1,34 @@
 #!/usr/bin/env python3
-import json, re, sys
+import re
 
-def clean_file(path):
-    with open(path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    for p in data:
-        dl = p.get('data_link','')
-        # Remove backslashes, curly braces, and stray commas
-        dl = dl.replace('\\,', ',')
-        dl = dl.replace('\\', '')
-        dl = dl.replace('{','').replace('}','')
-        dl = dl.replace(',,', ',')
-        # Remove trailing commas and spaces
-        dl = re.sub(r',\s*,+', ',', dl)
-        dl = dl.strip(', ')
-        p['data_link'] = dl
-    with open(path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-    print(f'Cleaned {path}')
+from platform_registry import dump_json, iter_platform_entries
 
-clean_file('data/platforms.json')
+
+def clean_data_link(value: str) -> str:
+    value = value.replace('\\,', ',')
+    value = value.replace('\\', '')
+    value = value.replace('{', '').replace('}', '')
+    value = value.replace(',,', ',')
+    value = re.sub(r',\s*,+', ',', value)
+    return value.strip(', ')
+
+
+def main() -> int:
+    cleaned = 0
+    for platform_id, path, entry in iter_platform_entries():
+        data_link = entry.get('data_link')
+        if not isinstance(data_link, str):
+            continue
+        fixed = clean_data_link(data_link)
+        if fixed == data_link:
+            continue
+        entry['data_link'] = fixed
+        dump_json(path, entry)
+        cleaned += 1
+        print(f'Cleaned {platform_id}')
+    print(f'Updated {cleaned} platform entries')
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

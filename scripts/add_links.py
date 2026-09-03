@@ -1,26 +1,45 @@
 #!/usr/bin/env python3
-import json, urllib.request, urllib.parse, sys
+import json
+import sys
+import urllib.parse
+import urllib.request
 
-DATA_PATH = 'data/platforms.json'
+from platform_registry import dump_json, iter_platform_entries
+
+
 GITHUB_API = 'https://api.github.com/search/repositories?q='
 
-with open(DATA_PATH, 'r', encoding='utf-8') as f:
-    platforms = json.load(f)
 
-for p in platforms:
-    if p.get('link'):
-        continue
-    query = urllib.parse.quote(p['platform'] + ' in:name')
+def search_repository_url(platform_name: str):
+    query = urllib.parse.quote(platform_name + ' in:name')
     url = GITHUB_API + query + '&per_page=1'
-    try:
-        with urllib.request.urlopen(url) as resp:
-            data = json.load(resp)
-            if data.get('items'):
-                p['link'] = data['items'][0].get('html_url')
-    except Exception as e:
-        # ignore errors, leave link absent
-        sys.stderr.write(f'GitHub search failed for {p["platform"]}: {e}\n')
+    with urllib.request.urlopen(url) as resp:
+        data = json.load(resp)
+    items = data.get('items') or []
+    if not items:
+        return None
+    return items[0].get('html_url')
 
-with open(DATA_PATH, 'w', encoding='utf-8') as f:
-    json.dump(platforms, f, indent=2, ensure_ascii=False)
-print('Added repository links where found')
+
+def main() -> int:
+    updated = 0
+    for platform_id, path, entry in iter_platform_entries():
+        if entry.get('github'):
+            continue
+        try:
+            github_url = search_repository_url(entry['platform'])
+        except Exception as exc:
+            sys.stderr.write(f'GitHub search failed for {entry["platform"]}: {exc}\n')
+            continue
+        if not github_url:
+            continue
+        entry['github'] = github_url
+        dump_json(path, entry)
+        updated += 1
+        print(f'Added github link for {platform_id}')
+    print(f'Updated {updated} platform entries')
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

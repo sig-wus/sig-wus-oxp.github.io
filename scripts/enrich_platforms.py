@@ -1,34 +1,9 @@
 #!/usr/bin/env python3
-import json, re, urllib.parse, sys, os
+import re
 
-DATA_PATH = 'data/platforms.json'
+from platform_registry import dump_json, iter_platform_entries
 
-# Read raw file as text and extract JSON objects safely despite missing commas
-raw = open(DATA_PATH, 'r', encoding='utf-8').read()
-# Remove surrounding array brackets
-inner = raw.strip()[1:-1]
-objects = []
-buf = ''
-brace_depth = 0
-for line in inner.splitlines():
-    stripped = line.strip()
-    if not stripped:
-        continue
-    # Track braces
-    brace_depth += stripped.count('{') - stripped.count('}')
-    buf += line + '\n'
-    if brace_depth == 0 and buf.strip():
-        # Remove trailing comma if present
-        obj_str = buf.rstrip(',\n ')
-        try:
-            obj = json.loads(obj_str)
-        except Exception as e:
-            sys.stderr.write(f'Failed to parse object: {e}\n{obj_str[:200]}...\n')
-            raise
-        objects.append(obj)
-        buf = ''
 
-# Regex patterns for LaTeX macros
 qty_pat = re.compile(r'\\qty\{([^}]+)\}\{\\?([a-zA-Z]+)\}')
 qtyprod_pat = re.compile(r'\\qtyproduct\{([^}]+)\}\{\\?mm\}')
 weight_pat = re.compile(r'\\weight~\\qty\{([^}]+)\}\{\\?gram\}')
@@ -41,9 +16,7 @@ framerate_pat = re.compile(r'Framerate:\s*([0-9]+(?:\.[0-9]*)?)\s*Hz', re.I)
 weight_text_pat = re.compile(r'Weight:\s*([0-9]+(?:\.[0-9]*)?)\s*g', re.I)
 operation_pat = re.compile(r'Operation:\s*([0-9]+(?:\.[0-9]*)?)\s*h', re.I)
 
-for p in objects:
-    specs = p.get('specifications', '')
-    # Replace LaTeX macros
+def normalize_specifications(specs: str) -> str:
     specs = qty_pat.sub(lambda m: f"{m.group(1)} {m.group(2)}", specs)
     specs = qtyprod_pat.sub(lambda m: f"{m.group(1).replace(' ', '×')} mm", specs)
     specs = weight_pat.sub(lambda m: f"Weight: {m.group(1)} g", specs)
@@ -51,29 +24,49 @@ for p in objects:
     specs = op_pat.sub(lambda m: f"Operation: {m.group(1)} h", specs)
     specs = re.sub(r'\\[a-zA-Z]+~', '', specs)
     specs = re.sub(r'\\[a-zA-Z]+\{[^}]*\}', '', specs)
-    specs = re.sub(r'\s+', ' ', specs).strip()
-    p['specifications'] = specs
-    # Extract fields into separate keys
-    fr = framerate_pat.search(specs)
-    if fr:
-        p['framerate'] = f"{fr.group(1)} Hz"
-    wt = weight_text_pat.search(specs)
-    if wt:
-        p['weight'] = f"{wt.group(1)} g"
-    op = operation_pat.search(specs)
-    if op:
-        p['operation'] = f"{op.group(1)} h"
-    sz = size_pat.search(specs)
-    if sz:
-        p['size'] = f"{sz.group(1)}×{sz.group(2)}×{sz.group(3)} mm"
-    pw = power_pat.search(specs)
-    if pw:
-        p['power'] = f"{pw.group(1)} W"
-    # Ensure image_url
-    if not p.get('image_url'):
-        p['image_url'] = f"https://source.unsplash.com/400x300/?ultrasound,{urllib.parse.quote(p['platform'])}"
+    return re.sub(r'\s+', ' ', specs).strip()
 
-# Write back pretty JSON array
-with open(DATA_PATH, 'w', encoding='utf-8') as f:
-    json.dump(objects, f, indent=2, ensure_ascii=False)
-print('Enriched platforms.json')
+
+def main() -> int:
+    updated = 0
+    for platform_id, path, entry in iter_platform_entries():
+        specs = entry.get('specifications')
+        if not isinstance(specs, str):
+            continue
+        normalized = normalize_specifications(specs)
+        changed = normalized != specs
+        entry['specifications'] = normalized
+
+        fr = framerate_pat.search(normalized)
+        if fr:
+            entry['framerate'] = f"{fr.group(1)} Hz"
+            changed = True
+        wt = weight_text_pat.search(normalized)
+        if wt:
+            entry['weight'] = f"{wt.group(1)} g"
+            changed = True
+        op = operation_pat.search(normalized)
+        if op:
+            entry['operation'] = f"{op.group(1)} h"
+            changed = True
+        sz = size_pat.search(normalized)
+        if sz:
+            entry['size'] = f"{sz.group(1)}×{sz.group(2)}×{sz.group(3)} mm"
+            changed = True
+        pw = power_pat.search(normalized)
+        if pw:
+            entry['power'] = f"{pw.group(1)} W"
+            changed = True
+
+        if not changed:
+            continue
+        dump_json(path, entry)
+        updated += 1
+        print(f'Enriched {platform_id}')
+
+    print(f'Updated {updated} platform entries')
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
