@@ -16,6 +16,7 @@
   <link rel="apple-touch-icon" href="assets/logo.svg" />
   <link rel="stylesheet" href="styles.css" />
   <script type="module" src="main.js" defer></script>
+  <script type="module" src="contribute.js" defer></script>
 </head>
 <body>
   <section class="stats-strip" aria-label="Catalog summary">
@@ -104,6 +105,10 @@
           <option value="weight-asc">Weight (low→high)</option>
         </select>
       </span>
+      <button id="contributeBtn" class="contribute-btn" type="button" title="Add a new platform or improve an existing entry via pull request">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M8 3a1.75 1.75 0 1 1 0 3.5A1.75 1.75 0 0 1 8 3ZM8 6.25a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM8 9.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5Z"/><circle cx="8" cy="4.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="8" cy="8" r="1.1" fill="currentColor" stroke="none"/><circle cx="8" cy="11.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+        Contribute
+      </button>
     </section>
 
     <section id="results" class="card-grid" aria-label="Platform results"></section>
@@ -125,4 +130,150 @@
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <div id="dialogBody"></div>
+  </dialog>
+  <dialog id="contributeDialog" class="contrib-dialog" aria-labelledby="contribTitle">
+    <button class="dialog-close" id="contribClose" type="button" aria-label="Close contribute dialog">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="contrib-head">
+      <span id="contribMode" class="eyebrow">New entry</span>
+      <h2 id="contribTitle">Contribute a platform</h2>
+      <p>Fill in the form — the JSON preview updates live and is validated against the catalog schema before you hand it over to GitHub.</p>
+    </div>
+    <div class="contrib-body">
+      <form id="contribForm" autocomplete="off">
+        <h3>Platform</h3>
+        <div class="f-grid">
+          <label class="f-field">Platform name<input id="cf_platform" data-path="platform" required /></label>
+          <label class="f-field">ID (slug — becomes the folder name)<input id="cf_id" data-path="id" placeholder="e.g. my-platform" required /></label>
+          <label class="f-field">Manufacturer / institution<input id="cf_manufacturer" data-path="manufacturer" required /></label>
+          <label class="f-field">Affiliation (optional)<input id="cf_affiliation" data-path="affiliation" data-type="str-null" placeholder="Lab / group" /></label>
+          <label class="f-field">Year<input id="cf_year" data-path="year" data-type="int" type="number" min="1990" max="2100" placeholder="e.g. 2025" /></label>
+          <label class="f-field">Category
+            <select id="cf_category" data-path="category">
+              <option value="">— select —</option>
+              <option>Pulse-echo non-imaging</option>
+              <option>Pulse-echo imaging</option>
+              <option>Non-pulse-echo (continuous wave Doppler)</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label class="f-field">Application / use cases<input id="cf_application" data-path="application" required placeholder="e.g. Blood-flow imaging" /></label>
+          <label class="f-field">Reference (BibTeX key)<input id="cf_reference" data-path="reference" placeholder="e.g. vostrikov_tinyprobe_2025" /></label>
+          <label class="f-field">Paper (DOI or URL)<input id="cf_paper" data-path="paper" placeholder="https://doi.org/10.1109/..." /></label>
+          <label class="f-field">GitHub repository (optional)<input id="cf_github" data-path="github" data-type="str-null" placeholder="https://github.com/..." /></label>
+          <label class="f-field">Website (optional)<input id="cf_website" data-path="website" data-type="str-null" placeholder="https://..." /></label>
+          <label class="f-field">Image (path relative to <code>platforms/&lt;id&gt;/</code>)<input id="cf_image" data-path="image" placeholder="assets/photo.png" /></label>
+          <button type="button" id="contribIndexStep" class="btn-pill" style="align-self:end">3 · Also add <code>platforms/index.json</code> →</button>
+        </div>
+
+        <h3>Transducer &amp; signal chain</h3>
+        <div class="f-grid">
+          <label class="f-field">Transducer channels<input id="cf_tx_channels" data-path="transducer.channels" data-type="int" type="number" min="1" placeholder="e.g. 32" /></label>
+          <label class="f-field">Array configuration<input id="cf_tx_config" data-path="transducer.config" placeholder="e.g. Linear array, beamforming" /></label>
+          <label class="f-field">Field of view<input id="cf_tx_fov" data-path="transducer.field_of_view" /></label>
+          <label class="f-field">TX voltage<input id="cf_tx_voltage" data-path="tx.voltage" placeholder="e.g. ±32 V" /></label>
+          <label class="f-field">TX frequency<input id="cf_tx_frequency" data-path="tx.frequency" placeholder="e.g. up to 15 MHz" /></label>
+          <label class="f-field">TX features<input id="cf_tx_feature" data-path="tx.feature" /></label>
+          <label class="f-field">RX channels<input id="cf_rx_channels" data-path="rx.channels" data-type="int" type="number" min="1" placeholder="e.g. 32" /></label>
+          <label class="f-field">RX sample rate<input id="cf_rx_sample_rate" data-path="rx.sample_rate" placeholder="e.g. 30 MS/s" /></label>
+          <label class="f-field">RX topology<input id="cf_rx_topology" data-path="rx.topology" /></label>
+          <label class="f-field">Controller / compute<input id="cf_controller" data-path="controller" placeholder="e.g. STM32 + FPGA" /></label>
+          <label class="f-field">Data link<input id="cf_data_link" data-path="data_link" placeholder="e.g. Wi-Fi 6" /></label>
+          <label class="f-field">Depth<input id="cf_depth" data-path="depth" /></label>
+          <label class="f-field">Resolution<input id="cf_resolution" data-path="resolution" /></label>
+        </div>
+
+        <h3>Specifications</h3>
+        <div class="f-grid">
+          <label class="f-field">Frame rate<input id="cf_specs_framerate" data-path="specs.framerate" /></label>
+          <label class="f-field">Power<input id="cf_specs_power" data-path="specs.power" placeholder="e.g. 0.97 W" /></label>
+          <label class="f-field">Weight<input id="cf_specs_weight" data-path="specs.weight" placeholder="e.g. 35 g" /></label>
+          <label class="f-field">Size<input id="cf_specs_size" data-path="specs.size" /></label>
+          <label class="f-field">Battery life<input id="cf_specs_operation" data-path="specs.operation" /></label>
+          <label class="f-field">Latency<input id="cf_specs_latency" data-path="specs.latency" /></label>
+        </div>
+
+        <h3>Access &amp; description</h3>
+        <div class="f-grid">
+          <label class="f-field">Access model
+            <select id="cf_access" data-path="access">
+              <option value="">— select —</option>
+              <option value="open-source">open-source</option>
+              <option value="commercial">commercial</option>
+              <option value="research">research</option>
+              <option value="partial">partial</option>
+            </select>
+          </label>
+          <label class="f-field f-wide">Access detail (license, channel…)<input id="cf_access_detail" data-path="access_detail" /></label>
+          <label class="f-field f-wide">Description<textarea id="cf_description" data-path="description" rows="3"></textarea></label>
+        </div>
+
+        <h3>Availability</h3>
+        <div class="f-grid">
+          <label class="f-check"><input id="cf_av_hw_os" data-path="availability.hw.open_source" data-type="bool" type="checkbox" /> Hardware open source</label>
+          <label class="f-check"><input id="cf_av_sw_os" data-path="availability.sw.open_source" data-type="bool" type="checkbox" /> Software open source</label>
+          <label class="f-check"><input id="cf_av_buy" data-path="availability.purchase.available" data-type="bool" type="checkbox" /> Buyable as a product</label>
+          <label class="f-field">HW schematics
+            <select id="cf_av_hw_schematics" data-path="availability.hw.schematics">
+              <option value="">—</option><option>open</option><option>partial</option><option>closed</option><option>planned</option>
+            </select>
+          </label>
+          <label class="f-field">HW gerber / PCB
+            <select id="cf_av_hw_gerber" data-path="availability.hw.gerber">
+              <option value="">—</option><option>open</option><option>closed</option><option>planned</option>
+            </select>
+          </label>
+          <label class="f-field">HW bill of materials
+            <select id="cf_av_hw_bom" data-path="availability.hw.bom">
+              <option value="">—</option><option>open</option><option>closed</option><option>planned</option>
+            </select>
+          </label>
+          <label class="f-field">Firmware
+            <select id="cf_av_sw_firmware" data-path="availability.sw.firmware">
+              <option value="">—</option><option>open</option><option>closed</option><option>planned</option>
+            </select>
+          </label>
+          <label class="f-field">Host software
+            <select id="cf_av_sw_host" data-path="availability.sw.host_software">
+              <option value="">—</option><option>open</option><option>closed</option><option>planned</option>
+            </select>
+          </label>
+          <label class="f-field">HW license (optional)<input id="cf_av_hw_license" data-path="availability.hw.license" data-type="str-null" /></label>
+          <label class="f-field">HW notes (optional)<input id="cf_av_hw_notes" data-path="availability.hw.notes" data-type="str-null" /></label>
+          <label class="f-field">SW license (optional)<input id="cf_av_sw_license" data-path="availability.sw.license" data-type="str-null" /></label>
+          <label class="f-field">SW notes (optional)<input id="cf_av_sw_notes" data-path="availability.sw.notes" data-type="str-null" /></label>
+          <label class="f-field">HW reference (optional)<input id="cf_av_hw_ref" data-path="availability.hw.reference" data-type="str-null" placeholder="https://..." /></label>
+          <label class="f-field">SW reference (optional)<input id="cf_av_sw_ref" data-path="availability.sw.reference" data-type="str-null" placeholder="https://..." /></label>
+          <label class="f-field">Purchase channel (optional)<input id="cf_av_buy_channel" data-path="availability.purchase.channel" data-type="str-null" /></label>
+          <label class="f-field">Purchase URL (optional)<input id="cf_av_buy_url" data-path="availability.purchase.url" data-type="str-null" placeholder="https://..." /></label>
+          <label class="f-field">Price USD (optional)<input id="cf_av_buy_usd" data-path="availability.purchase.price_usd" data-type="float" type="number" step="0.01" min="0" /></label>
+          <label class="f-field">Price EUR (optional)<input id="cf_av_buy_eur" data-path="availability.purchase.price_eur" data-type="float" type="number" step="0.01" min="0" /></label>
+          <label class="f-field f-wide">Price note (optional)<input id="cf_av_buy_note" data-path="availability.purchase.price_note" data-type="str-null" /></label>
+        </div>
+
+        <h3>Image attribution <span class="contrib-hint">required when an image is referenced</span></h3>
+        <div class="f-grid">
+          <label class="f-field f-wide">Credit<input id="cf_attr_credit" data-path="image_attribution.credit" placeholder="Author / lab / vendor, or “Original illustration created for this catalog”" /></label>
+          <label class="f-field">License<input id="cf_attr_license" data-path="image_attribution.license" placeholder="CC0, CC-BY-4.0, CERN-OHL-S…" /></label>
+          <label class="f-field">Retrieved (YYYY-MM)<input id="cf_attr_retrieved" data-path="image_attribution.retrieved" placeholder="2026-09" /></label>
+          <label class="f-field">Source URL (empty = null)<input id="cf_attr_source_url" data-path="image_attribution.source_url" data-type="str-null" placeholder="https://..." /></label>
+        </div>
+      </form>
+
+      <aside class="contrib-aside">
+        <div class="contrib-aside-sticky">
+          <h3>Step 1 — JSON preview</h3>
+          <p class="contrib-status" id="contribStatus">Loading schema…</p>
+          <textarea id="contribJson" class="contrib-json" spellcheck="false" aria-label="Generated platform JSON"></textarea>
+          <button type="button" id="contribCopy" class="btn-pill" disabled>1 · Copy JSON</button>
+          <a id="contribGithub" class="btn-pill" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            2 · Create file on GitHub ↗
+          </a>
+          <p id="contribImageStep" class="contrib-step" hidden>3 · Upload the image as <code>platforms/&lt;id&gt;/assets/…</code> in the same pull request.</p>
+          <p class="contrib-step contrib-muted">GitHub opens the repository file editor — if you are not signed in as a maintainer, GitHub forks the repo and lets you open a pull request from there.</p>
+        </div>
+      </aside>
+    </div>
   </dialog>

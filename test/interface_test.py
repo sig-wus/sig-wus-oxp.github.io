@@ -22,6 +22,12 @@ checks = [
     ('year filter select', 'id="yearFilter"'),
     ('type filter select', 'id="typeFilter"'),
     ('detail dialog close button', 'id="closeDialog"'),
+    ('contribute button', 'id="contributeBtn"'),
+    ('contribute dialog', 'id="contributeDialog"'),
+    ('contribute form', 'id="contribForm"'),
+    ('contribute JSON preview', 'id="contribJson"'),
+    ('contribute GitHub handoff link', 'id="contribGithub"'),
+    ('contribute module script', 'src="contribute.js"'),
 ]
 
 failed = False

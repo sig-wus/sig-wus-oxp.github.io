@@ -1,6 +1,7 @@
 // main.js — SIG-WUS X-change catalog renderer
 // Loads platforms/index.json, then each platforms/<id>/index.json.
 import Fuse from './vendor/fuse.min.mjs';
+import { openContributor } from './contribute.js';
 
 const CATALOG_INDEX = 'platforms/index.json';
 
@@ -538,9 +539,11 @@ function openDetail(id) {
       ${buyAction}
       ${sourceAction}
       ${p.website && p.website !== buy.url ? `<a class="btn btn-ghost" href="${escapeHTML(p.website)}" target="_blank" rel="noopener noreferrer">Project page ↗</a>` : ''}
+      <button type="button" class="btn btn-ghost dlg-improve" data-improve="${escapeHTML(p.id)}">Improve this entry</button>
     </div>`;
   els.detailDialog.showModal();
 }
+
 function closeDetail() {
   if (els.detailDialog.open) els.detailDialog.close();
 }
@@ -660,6 +663,16 @@ async function init() {
     if (card && !e.target.closest('a')) {
       openDetail(card.dataset.id);
     }
+  });
+  // "Improve this entry" inside the detail dialog
+  els.detailDialog.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-improve]');
+    if (!btn) return;
+    e.stopPropagation();
+    const p = STATE.platforms.find((x) => x.id === btn.dataset.improve);
+    if (!p) return;
+    closeDetail();
+    openContributor(p);
   });
   els.results.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
