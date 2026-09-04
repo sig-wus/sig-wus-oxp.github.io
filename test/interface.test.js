@@ -34,8 +34,9 @@ const htmlChecks = [
   ['contribute JSON preview', 'id="contribJson"'],
   ['contribute GitHub handoff link', 'id="contribGithub"'],
   ['contribute module script', 'src="contribute.js"'],
-  ['data disclaimer strip', 'data-disclaimer'],
-  ['disclaimer PR link hook', 'data-open-contribute'],
+  ['disclaimer stats cell', 'stat-disclaimer-cell'],
+  ['disclaimer text', 'May contain inaccuracies'],
+  ['results-bar contribute button', 'id="contributeBtn"'],
 ];
 
 const mainChecks = [

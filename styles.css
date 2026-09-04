@@ -84,10 +84,10 @@ button { font: inherit; }
   border-radius: 0 0 6px 0;
 }
 
-/* stats strip: 4 numeric stats (1fr each) + citation card (2fr) */
+/* stats strip: 4 numeric stats (1fr each) + disclaimer + citation card (2fr) */
 .stats-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 2.4fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.1fr) minmax(0, 2fr);
   gap: 0;
   margin: 16px 0 20px;
   background: var(--bg-elev);
@@ -709,23 +709,19 @@ button { font: inherit; }
   gap: 4px;
 }
 
-/* data disclaimer strip */
-.data-disclaimer {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 22px 0 8px;
-  padding: 12px 16px;
-  background: var(--primary-soft);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--primary);
-  border-radius: var(--r-md);
-  color: var(--ink-2);
-  font-size: 13px;
+/* disclaimer cell in the stats strip */
+.stat-cell.stat-disclaimer-cell {
+  background: linear-gradient(135deg, rgba(11,110,168,.06) 0%, rgba(11,110,168,.12) 100%);
+  gap: 8px;
+  justify-content: center;
 }
-.data-disclaimer p { margin: 0; line-height: 1.5; }
-.data-disclaimer .link-btn { white-space: nowrap; }
-.data-disclaimer svg { flex: none; }
+.stat-disclaimer-text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  font-weight: 600;
+}
 
 /* inline link-style button (reset everything / open a PR) */
 .link-btn {
