@@ -228,17 +228,22 @@ async function ensureSchema() {
 // -- wiring -------------------------------------------------------------------
 
 function init() {
-  for (const [key, id] of Object.entries({
+  const required = {
     dialog: 'contributeDialog', form: 'contribForm', json: 'contribJson', status: 'contribStatus',
     copy: 'contribCopy', github: 'contribGithub', indexStep: 'contribIndexStep', imageStep: 'contribImageStep',
-    mode: 'contribMode', title: 'contribTitle', close: 'contribClose', open: 'contributeBtn',
+    mode: 'contribMode', title: 'contribTitle', close: 'contribClose',
     idInput: 'cf_id',
-  })) {
+  };
+  for (const [key, id] of Object.entries(required)) {
     els[key] = document.getElementById(id);
     if (!els[key]) return; // markup missing -> stay inert, catalog keeps working
   }
-
-  els.open.addEventListener('click', () => openContributor(null));
+  els.open = document.getElementById('contributeBtn'); // optional: results-bar button (legacy location)
+  if (els.open) els.open.addEventListener('click', () => openContributor(null));
+  // Disclaimer strip: "open a pull request on GitHub" -> new-entry form
+  document.querySelectorAll('[data-open-contribute]').forEach((el) =>
+    el.addEventListener('click', () => openContributor(null)),
+  );
   els.close.addEventListener('click', () => els.dialog.close());
   els.form.addEventListener('input', rebuild);
   els.form.addEventListener('change', rebuild);

@@ -695,6 +695,52 @@ button { font: inherit; }
 .card-link.ghost { background: transparent; color: var(--ink-2); border: 1px solid var(--line); }
 .card-link.ghost:hover { background: var(--primary-soft); color: var(--primary); border-color: var(--primary); }
 
+/* paper mark (journal glyph) inline in buttons */
+.card-link svg.paper-mark, .btn svg.paper-mark {
+  display: inline-block;
+  vertical-align: -1.5px;
+  margin-right: 3px;
+}
+.card-link svg, .btn svg, .dlg-improve svg { flex: none; }
+.card-link, .dlg-improve {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* data disclaimer strip */
+.data-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 22px 0 8px;
+  padding: 12px 16px;
+  background: var(--primary-soft);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--r-md);
+  color: var(--ink-2);
+  font-size: 13px;
+}
+.data-disclaimer p { margin: 0; line-height: 1.5; }
+.data-disclaimer .link-btn { white-space: nowrap; }
+.data-disclaimer svg { flex: none; }
+
+/* inline link-style button (reset everything / open a PR) */
+.link-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.link-btn:hover { color: var(--primary-strong); }
+
 /* empty + error */
 .empty-state, .error-state {
   text-align: center;

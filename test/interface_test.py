@@ -2,39 +2,59 @@
 #
 # Attribution: written by GLM (glm-5.3-flash) via the Oh My Pi coding harness,
 # 2026-08-27, working with the human researcher on the SIG-WUS X-change repo.
-# Verifies that index.html declares the elements the catalog JS relies on.
+# Verifies that index.html, main.js, and contribute.js declare the elements
+# the catalog JS relies on.
 
 import sys, pathlib
 
-index_path = pathlib.Path(__file__).resolve().parents[1] / 'index.html'
+root = pathlib.Path(__file__).resolve().parents[1]
 
-try:
-    html = index_path.read_text(encoding='utf-8')
-except Exception as e:
-    print(f'Failed to read {index_path}: {e}')
-    sys.exit(1)
+def read(rel):
+    try:
+        return (root / rel).read_text(encoding='utf-8')
+    except Exception as e:
+        print(f'Failed to read {root / rel}: {e}')
+        sys.exit(1)
+
+html = read('index.html')
+mainjs = read('main.js')
+contribjs = read('contribute.js')
 
 # Checks: elements the catalog JS requires, local-only assets
-checks = [
+html_checks = [
     ('search input element', 'id="searchInput"'),
     ('main.js script', 'src="main.js"'),
     ('local stylesheet link', 'href="styles.css"'),
     ('year filter select', 'id="yearFilter"'),
     ('type filter select', 'id="typeFilter"'),
     ('detail dialog close button', 'id="closeDialog"'),
-    ('contribute button', 'id="contributeBtn"'),
     ('contribute dialog', 'id="contributeDialog"'),
     ('contribute form', 'id="contribForm"'),
     ('contribute JSON preview', 'id="contribJson"'),
     ('contribute GitHub handoff link', 'id="contribGithub"'),
     ('contribute module script', 'src="contribute.js"'),
+    ('data disclaimer strip', 'data-disclaimer'),
+    ('disclaimer PR link hook', 'data-open-contribute'),
+]
+
+main_checks = [
+    ('card contribute handler', 'data-contribute'),
+]
+
+contrib_checks = [
+    ('disclaimer PR link wiring', 'data-open-contribute'),
 ]
 
 failed = False
-for name, needle in checks:
-    if needle not in html:
-        print(f'Missing {name}')
-        failed = True
+for checks, text, fname in [
+    (html_checks, html, 'index.html'),
+    (main_checks, mainjs, 'main.js'),
+    (contrib_checks, contribjs, 'contribute.js'),
+]:
+    for name, needle in checks:
+        if needle not in text:
+            print(f'{fname} missing {name}')
+            failed = True
 
 # No external resource dependencies (scripts, styles, iframes, imports)
 external = [
