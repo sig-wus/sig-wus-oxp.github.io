@@ -132,6 +132,14 @@ button { font: inherit; }
   background: linear-gradient(135deg, rgba(11,110,168,.14) 0%, rgba(11,110,168,.22) 100%);
   text-decoration: none;
 }
+.stat-cite-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.stat-cite-head .stat-cite-tag { margin-bottom: 0; }
+.stat-cite-logo { color: var(--primary); }
 .stat-cite-tag {
   display: inline-block;
   font-size: 9px;
@@ -421,6 +429,13 @@ button { font: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* SVG illustrations are embedded via <object>; without this, real user clicks on the
+   image are captured inside the SVG document and never open the detail dialog. */
+.card-media img,
+.card-media object,
+.card-media svg {
+  pointer-events: none;
 }
 .card-badges {
   position: absolute;
