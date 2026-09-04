@@ -288,6 +288,34 @@ def main():
             failed = True
         await b.js("document.getElementById('contributeDialog').close()")
 
+        # ---- 4b. stat cells toggle their filters; first cell resets everything
+        seq = await b.js(
+            """
+            (() => {
+              const g = (id) => document.getElementById(id);
+              const buy = g('buyableFilter'), hw = g('hwOpenFilter'), sw = g('swOpenFilter');
+              const s1 = buy.checked;
+              g('statBuyCell').click();
+              const s2 = buy.checked;
+              g('statBuyCell').click();
+              const s3 = buy.checked;
+              const h1 = hw.checked;
+              g('statHwCell').click();
+              const h2 = hw.checked;
+              g('statTotalCell').click();
+              return { buy: [s1, s2, s3], hw: [h1, h2], hwAfterReset: hw.checked, swAfterReset: sw.checked };
+            })()
+            """
+        )
+        ok = (
+            seq["buy"] == [False, True, False]          # click toggles, click again untoggles
+            and seq["hw"] == [True, False]              # HW chip on by default, cell click unchecks
+            and seq["hwAfterReset"] and seq["swAfterReset"]  # first cell resets to defaults
+        )
+        print(f"stat cell toggles + reset cell: buy={seq['buy']} hw={seq['hw']} reset(hw,sw)=({seq['hwAfterReset']},{seq['swAfterReset']}) -> {'OK' if ok else 'FAIL'}")
+        if not ok:
+            failed = True
+
         # ---- 5. card Improve opens edit-mode form, prefilled
         await b.js("[...document.querySelectorAll('.card')][0].querySelector('[data-contribute]').click()")
         await asyncio.sleep(0.5)

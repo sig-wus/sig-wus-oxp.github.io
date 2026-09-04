@@ -333,6 +333,22 @@ function renderCatalogStats(list) {
   if (els.statHw) els.statHw.textContent = hwOpen;
   if (els.statSw) els.statSw.textContent = swOpen;
   if (els.statBuy) els.statBuy.textContent = buyable;
+
+  // Reflect the active filters on the cells (aria-pressed + .stat-active)
+  const toggles = [
+    ['statTotalCell', null, 'All platforms — click to reset all filters'],
+    ['statHwCell', els.hwOpenFilter, 'Hardware designs that are open source — click to toggle the HW-open filter'],
+    ['statSwCell', els.swOpenFilter, 'Software that is open source — click to toggle the SW-open filter'],
+    ['statBuyCell', els.buyableFilter, 'Platforms you can buy — click to toggle the buyable filter'],
+  ];
+  for (const [id, chip, title] of toggles) {
+    const cell = document.getElementById(id);
+    if (!cell) continue;
+    const active = chip ? chip.checked : null;
+    cell.classList.toggle('stat-active', chip ? active : false);
+    cell.setAttribute('aria-pressed', chip ? String(active) : 'false');
+    cell.setAttribute('title', title);
+  }
 }
 
 // -- institution type classifier (item 8) -----------------------------------
@@ -640,6 +656,37 @@ async function init() {
     }
   });
 
+  els.resetFilters.addEventListener('click', resetAll);
+  els.resetEmpty.addEventListener('click', resetAll);
+
+  // Stat cells act as filter toggles: total = reset, HW/SW/Buy = toggle that chip
+  const statStrip = document.querySelector('.stats-strip');
+  if (statStrip) {
+    const toggleStat = (cell) => {
+      const kind = cell.dataset.statToggle;
+      if (kind === 'all') {
+        resetAll();
+        return;
+      }
+      const chip = { hw: els.hwOpenFilter, sw: els.swOpenFilter, buy: els.buyableFilter }[kind];
+      if (!chip) return;
+      chip.checked = !chip.checked;
+      update();
+    };
+    statStrip.addEventListener('click', (e) => {
+      const cell = e.target.closest('[data-stat-toggle]');
+      if (!cell || e.target.closest('#contributeBtn, #paperCiteLink, a, button')) return;
+      toggleStat(cell);
+    });
+    statStrip.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const cell = e.target.closest('[data-stat-toggle]');
+      if (!cell) return;
+      e.preventDefault();
+      toggleStat(cell);
+    });
+  }
+
   // Year timeline: click a point to filter by that year (click again to clear)
   if (els.timeline) els.timeline.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-year]');
@@ -652,8 +699,6 @@ async function init() {
    els.typeFilter, els.yearFilter, els.sortBy].forEach((el) =>
     el.addEventListener('change', update),
   );
-  els.resetFilters.addEventListener('click', resetAll);
-  els.resetEmpty.addEventListener('click', resetAll);
 
   // Detail dialog: close button + backdrop click
   els.closeDialog.addEventListener('click', closeDetail);
@@ -708,6 +753,7 @@ async function init() {
 function update() {
   const list = applyFilters();
   render(list);
+  renderCatalogStats(list);
 }
 
 function resetAll() {

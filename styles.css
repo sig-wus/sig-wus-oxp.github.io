@@ -84,10 +84,10 @@ button { font: inherit; }
   border-radius: 0 0 6px 0;
 }
 
-/* stats strip: 4 numeric stats (1fr each) + disclaimer + citation card (2fr) */
+/* stats strip: 6 clickable/interactive cells of equal width */
 .stats-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.1fr) minmax(0, 2fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0;
   margin: 16px 0 20px;
   background: var(--bg-elev);
@@ -121,6 +121,15 @@ button { font: inherit; }
   color: var(--muted);
 }
 .stat-cell:last-child { border-right: none; }
+
+/* clickable filter cells */
+.stat-toggle { cursor: pointer; transition: background .15s ease, box-shadow .15s ease; }
+.stat-toggle:hover { background: var(--primary-soft); }
+.stat-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: -3px; }
+.stat-toggle.stat-active { box-shadow: inset 0 -3px 0 var(--primary); }
+.stat-toggle.stat-active .stat-num { color: var(--primary-strong); }
+.stat-toggle.stat-active .stat-lbl { color: var(--primary); }
+
 .stat-cell.stat-cite {
   display: block;
   background: linear-gradient(135deg, rgba(11,110,168,.08) 0%, rgba(11,110,168,.15) 100%);
