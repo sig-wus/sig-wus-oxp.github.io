@@ -1,0 +1,73 @@
+{
+  "id": "iup",
+  "platform": "IUP",
+  "manufacturer": "TU Bergakademie Freiberg",
+  "affiliation": "MSE Lab",
+  "reference": "schierling_2026",
+  "category": "Pulse-echo non-imaging",
+  "year": 2026,
+  "transducer": {
+    "channels": 1,
+    "config": "SMA connector",
+    "field_of_view": "n/a"
+  },
+  "depth": "n/a",
+  "resolution": "n/a",
+  "tx": {
+    "voltage": "±30 V",
+    "frequency": "up to 8MHz"
+  },
+  "rx": {
+    "channels": 1,
+    "sample_rate": "16 MS/s"
+  },
+  "controller": "STM32H7 + Lattice ICE40",
+  "data_link": "USB-FS + Wifi",
+  "specs": {
+    "framerate": "n/a",
+    "weight": "43 g",
+    "size": "62 × 45 × 23 mm",
+    "power": "2.9 W"
+  },
+  "application": "Pulsed-Wave Doppler",
+  "description": "Platform developed as sensor node in distributed measurement system for estimating large scale flow structures in DRESDYN magnetohydrodynamic experiment",
+  "access": "research",
+  "access_detail": "tbd",
+  "paper": "https://doi.org/10.25532/OPARA-1058",
+  "github": null,
+  "website": null,
+  "image": "assets/iup_v0.2_stack.png",
+  "image_attribution": {
+    "credit": "Robert Kunz",
+    "source_url": null,
+    "license": "CC-BY-4.0",
+    "retrieved": "2026-09"
+  },
+  "availability": {
+    "hw": {
+      "open_source": false,
+      "schematics": "closed",
+      "gerber": "closed",
+      "bom": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Open Source strategy to be defined"
+    },
+    "sw": {
+      "open_source": false,
+      "firmware": "closed",
+      "host_software": "closed",
+      "license": null,
+      "reference": null,
+      "notes": "Open Source strategy to be defined"
+    },
+    "purchase": {
+      "available": false,
+      "channel": "Research collaboration only",
+      "url": null,
+      "price_usd": null,
+      "price_eur": null,
+      "price_note": "To be defined"
+    }
+  }
+}
