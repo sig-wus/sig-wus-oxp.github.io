@@ -224,11 +224,30 @@ def main():
             await asyncio.sleep(0.6)
             open_ = await b.js("document.getElementById('detailDialog').open")
             body_len = await b.js("document.getElementById('dialogBody').innerHTML.length")
-            ok = open_ and body_len > 100
-            print(f"click card {zones['id']} at {zone} (hit {pt['hit']}): dialog open={open_}, body={body_len} -> {'OK' if ok else 'FAIL'}")
+            # "nothing but blur" bug class: dialog opens but renders 0px tall/wide,
+            # or #dialogBody got nested into the close button by a missing tag.
+            geom = await b.js(
+                """
+                (() => {
+                  const d = document.getElementById('detailDialog');
+                  const r = d.getBoundingClientRect();
+                  const body = document.getElementById('dialogBody');
+                  return {
+                    w: r.width, h: r.height,
+                    bodyParentIsDialog: body.parentElement === d,
+                    childCount: d.children.length,
+                  };
+                })()
+                """
+            )
+            ok = open_ and body_len > 100 and geom["h"] > 200 and geom["bodyParentIsDialog"]
+            print(
+                f"click card {zones['id']} at {zone} (hit {pt['hit']}): open={open_}, "
+                f"body={body_len}, dialog {geom['w']:.0f}x{geom['h']:.0f}, "
+                f"body direct child={geom['bodyParentIsDialog']} -> {'OK' if ok else 'FAIL'}"
+            )
             if not ok:
                 failed = True
-            # close via close button
             if open_:
                 await b.js("document.getElementById('closeDialog').click()")
                 await asyncio.sleep(0.3)
