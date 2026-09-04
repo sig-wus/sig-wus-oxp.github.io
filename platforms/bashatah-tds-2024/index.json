@@ -11,12 +11,11 @@
     "config": "Linear-band A-mode array",
     "field_of_view": "n/a"
   },
-  "frequency": "3–5 MHz (chirp sweep)",
   "depth": "n/a",
   "resolution": "n/a",
   "tx": {
     "voltage": "0.5 V",
-    "frequency": "3–5 MHz (10 ms linear chirp)"
+    "frequency": "3–5 MHz (chirp sweep)"
   },
   "rx": {
     "channels": 4,

@@ -197,7 +197,7 @@ function renderCard(p) {
 
   const specs = [
     { l: 'Channels', v: formatSpec(p.transducer?.channels) },
-    { l: 'Frequency', v: formatSpec(p.frequency) },
+    { l: 'Frequency', v: formatSpec(p.tx?.frequency) },
     { l: 'Power', v: formatSpec(p.specs?.power) },
     { l: 'Weight', v: formatSpec(p.specs?.weight) },
     { l: 'Size', v: formatSpec(p.specs?.size) },
@@ -435,7 +435,6 @@ function openDetail(id) {
     ['RX topology', formatSpec(p.rx?.topology)],
     ['Controller', formatSpec(p.controller)],
     ['Data link', formatSpec(p.data_link)],
-    ['Frequency', formatSpec(p.frequency)],
     ['Depth', formatSpec(p.depth)],
     ['Resolution', formatSpec(p.resolution)],
   ];

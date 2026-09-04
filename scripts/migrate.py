@@ -20,7 +20,7 @@ import shutil
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "platforms.json"
 SCHEMA_SRC = ROOT / "data" / "schema.json"
 PLATFORMS_DIR = ROOT / "platforms"

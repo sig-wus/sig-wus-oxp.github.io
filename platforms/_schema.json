@@ -73,9 +73,6 @@
         }
       }
     },
-    "frequency": {
-      "type": "string"
-    },
     "depth": {
       "type": "string"
     },

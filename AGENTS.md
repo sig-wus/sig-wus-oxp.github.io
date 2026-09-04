@@ -19,8 +19,8 @@ IEEE RBME 2026 review paper by Weik et al.:
 > DOI: [10.1109/RBME.2026.3664011](https://doi.org/10.1109/RBME.2026.3664011)
 
 Technical specifications (channel counts, voltages, frequencies, weights, etc.) are
-factual data extracted from each primary publication cited in `data/platforms.json`'s
-`paper` field. Every DOI has been cross-verified against the review paper's
+factual data extracted from each primary publication cited in each
+`platforms/<id>/index.json` file's `paper` field. Every DOI has been cross-verified against the review paper's
 `literature.bib` and resolves correctly in real browsers.
 
 ## Attribution policy

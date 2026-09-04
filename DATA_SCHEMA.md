@@ -1,18 +1,47 @@
-# Data schema for SIG WUS platform catalog
+# Data Schema For SIG-WUS Platform Catalog
 
-The JSON file `data/platforms.json` contains an array of platform objects. Each object must conform to the following schema (also defined in `data/schema.json`):
+Each platform entry lives in `platforms/<id>/index.json` and must conform to
+`platforms/_schema.json`.
+
+The registry list in `platforms/index.json` contains the ordered platform ids
+that the client loads at runtime.
+
+## Core Files
+
+| File | Purpose |
+|---|---|
+| `platforms/index.json` | Ordered list of platform ids. |
+| `platforms/_schema.json` | JSON schema for a single platform entry. |
+| `platforms/<id>/index.json` | Canonical metadata for one platform. |
+
+## Entry Model
 
 | Field | Type | Description |
-|-------|------|-------------|
-| `platform` | string | Human‑readable name of the platform (e.g. `WMAUS`). |
-| `reference` | string \| null | BibTeX key of the primary reference; `null` if not available. |
-| `transducer` | string | Brief description of the transducer (e.g. `8 ch. in wristband`). |
-| `tx_path` | string | Transmit‑path description (voltage, frequency, etc.). |
-| `rx_path` | string | Receive‑path description (muxing, sampling, etc.). |
-| `design` | string | Design details such as controller, ASIC, FPGA, MCU, etc. |
-| `data_link` | string | Communication interface for raw data (e.g. `\bluetooth{} raw data`). |
-| `specifications` | string | Key performance specifications: frame rate, weight, size, power, battery operation, etc. LaTeX macros are kept for rendering on the site. |
-| `application` | string | Typical application(s) and citation list. |
-| `access` | string | Availability indicator (`CA` for commercially available, `API`, `\faCode{}` for open‑source, etc.). |
+|---|---|---|
+| `id` | string | Unique slug used in `platforms/index.json` and folder names. |
+| `platform` | string | Human-readable platform name, for example `WMAUS`. |
+| `manufacturer` | string | Primary organization or institution behind the platform. |
+| `affiliation` | string or null | Lab, group, or sub-organization within the manufacturer. |
+| `reference` | string | BibTeX key for the primary publication. |
+| `category` | string | Platform class such as `Pulse-echo imaging`. |
+| `year` | integer | Publication or release year used in the timeline. |
+| `transducer` | object | Channel count and transducer configuration. |
+| `depth` | string | Imaging or sensing depth, or `n/a`. |
+| `resolution` | string | Resolution, or `n/a`. |
+| `tx` | object | Transmit-path parameters such as voltage and frequency. |
+| `rx` | object | Receive-path parameters such as topology and sample rate. |
+| `controller` | string | Sequencer and compute device summary. |
+| `data_link` | string | Wired or wireless data link description. |
+| `specs` | object | Structured performance data such as frame rate, power, and weight. |
+| `application` | string | Typical application areas. |
+| `description` | string | Free-form summary shown in the catalog. |
+| `access` | string | Availability model: `open-source`, `commercial`, `research`, or `partial`. |
+| `access_detail` | string | Clarifies the access model, license, or channel. |
+| `paper` | string | DOI URL or canonical source URL. |
+| `github` | string or null | Official GitHub repository, if one exists. |
+| `website` | string or null | Official website, if one exists. |
+| `image` | string | Platform-local asset path, typically `assets/<filename>`. |
+| `image_attribution` | object | Required attribution block for the platform image. |
+| `availability` | object | Structured hardware, software, and purchase availability. |
 
-All fields are required (except `reference` which may be `null`). No additional properties are permitted. The schema file `data/schema.json` can be used for automated validation.
+Use `platforms/_schema.json` for exact field requirements, enums, and validation.
