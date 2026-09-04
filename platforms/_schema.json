@@ -177,6 +177,14 @@
       ],
       "format": "uri"
     },
+    "verified_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date",
+      "description": "YYYY-MM when the entry was last verified by its creators. Set to null (or omit) to indicate the entry has not been verified."
+    },
     "image": {
       "type": "string",
       "description": "Path to illustration/photo relative to this platform directory (typically assets/<filename>)."

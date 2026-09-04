@@ -196,6 +196,10 @@ function renderCard(p) {
   else srcBadges.push('<span class="badge badge-build" title="Build it yourself">Self-build</span>');
   badges.push(...srcBadges);
 
+  if (p.verified_at) {
+    badges.push(`<span class="badge badge-verified" title="Verified by the creators · last verified ${escapeHTML(p.verified_at)}">✓ Verified ${escapeHTML(p.verified_at)}</span>`);
+  }
+
   const specs = [
     { l: 'Channels', v: formatSpec(p.transducer?.channels) },
     { l: 'Frequency', v: formatSpec(p.tx?.frequency) },
@@ -512,6 +516,9 @@ function openDetail(id) {
       <span class="eyebrow">${escapeHTML(p.category || '')}</span>
       <h2>${escapeHTML(p.platform)}</h2>
       <div class="dlg-mfr">${escapeHTML(p.manufacturer || '')} · ${p.year || ''}</div>
+      ${p.verified_at
+        ? `<div class="dlg-verified" title="Verified by the creators · last verified ${escapeHTML(p.verified_at)}">✓ Verified by the creators · ${escapeHTML(p.verified_at)}</div>`
+        : ''}
     </div>
     <div class="dlg-body">
       <div class="dlg-image">${mediaHTML(p)}</div>

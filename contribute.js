@@ -125,6 +125,9 @@ function validateNode(value, schemaNode, label, errors) {
   if (typeof value === 'string' && schemaNode.format === 'uri' && !/^https?:\/\/\S+/.test(value)) {
     errors.push(`${label}: must be an http(s) URL`);
   }
+  if (typeof value === 'string' && schemaNode.format === 'date' && !/^\d{4}-\d{2}$|^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    errors.push(`${label}: must be YYYY-MM (or YYYY-MM-DD)`);
+  }
   if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
     for (const key of schemaNode.required || []) {
       if (!(key in value)) errors.push(`${label ? label + '.' : ''}${key}: required`);

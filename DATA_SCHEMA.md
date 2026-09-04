@@ -40,6 +40,7 @@ that the client loads at runtime.
 | `paper` | string | DOI URL or canonical source URL. |
 | `github` | string or null | Official GitHub repository, if one exists. |
 | `website` | string or null | Official website, if one exists. |
+| `verified_at` | string or null | `YYYY-MM` when the entry was last verified by its creators; shows the "Verified" badge. |
 | `image` | string | Platform-local asset path, typically `assets/<filename>`. |
 | `image_attribution` | object | Required attribution block for the platform image. |
 | `availability` | object | Structured hardware, software, and purchase availability. |

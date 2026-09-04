@@ -56,6 +56,13 @@ matches the BibTeX key in the source paper.
 6. Append the new id to `platforms/index.json`.
 7. Validate the entry locally (see below) and open a Pull Request against `main`.
 
+### Creator verification badge
+
+To mark an entry as **verified by its creators**, set `"verified_at": "YYYY-MM"`
+(date of the last verification) in `platforms/<id>/index.json`. The catalog then
+shows a green **✓ Verified** badge on the card and in the detail dialog. Omit the
+field or set it to `null` for unverified entries.
+
 ## Updating an existing entry
 - Edit `platforms/<id>/index.json`.
 - If you replace the image, update the platform-local `assets/` file and
