@@ -659,10 +659,10 @@ async function init() {
   els.resetFilters.addEventListener('click', resetAll);
   els.resetEmpty.addEventListener('click', resetAll);
 
-  // Stat cells act as filter toggles: total = reset, HW/SW/Buy = toggle that chip
+  // Stat cells act as filter setters: total = reset, HW/SW/Buy = switch that chip ON
   const statStrip = document.querySelector('.stats-strip');
   if (statStrip) {
-    const toggleStat = (cell) => {
+    const applyStat = (cell) => {
       const kind = cell.dataset.statToggle;
       if (kind === 'all') {
         resetAll();
@@ -670,20 +670,20 @@ async function init() {
       }
       const chip = { hw: els.hwOpenFilter, sw: els.swOpenFilter, buy: els.buyableFilter }[kind];
       if (!chip) return;
-      chip.checked = !chip.checked;
+      chip.checked = true;
       update();
     };
     statStrip.addEventListener('click', (e) => {
       const cell = e.target.closest('[data-stat-toggle]');
       if (!cell || e.target.closest('#contributeBtn, #paperCiteLink, a, button')) return;
-      toggleStat(cell);
+      applyStat(cell);
     });
     statStrip.addEventListener('keydown', (e) => {
       if (e.key !== 'Enter' && e.key !== ' ') return;
       const cell = e.target.closest('[data-stat-toggle]');
       if (!cell) return;
       e.preventDefault();
-      toggleStat(cell);
+      applyStat(cell);
     });
   }
 

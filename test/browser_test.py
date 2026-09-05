@@ -288,31 +288,28 @@ def main():
             failed = True
         await b.js("document.getElementById('contributeDialog').close()")
 
-        # ---- 4b. stat cells toggle their filters; first cell resets everything
+        # ---- 4b. stat cells SET their filters on (idempotent); first cell resets everything
         seq = await b.js(
             """
             (() => {
               const g = (id) => document.getElementById(id);
               const buy = g('buyableFilter'), hw = g('hwOpenFilter'), sw = g('swOpenFilter');
-              const s1 = buy.checked;
+              const s1 = buy.checked;                     // false by default
               g('statBuyCell').click();
-              const s2 = buy.checked;
+              const s2 = buy.checked;                     // set -> true
               g('statBuyCell').click();
-              const s3 = buy.checked;
-              const h1 = hw.checked;
-              g('statHwCell').click();
-              const h2 = hw.checked;
-              g('statTotalCell').click();
-              return { buy: [s1, s2, s3], hw: [h1, h2], hwAfterReset: hw.checked, swAfterReset: sw.checked };
+              const s3 = buy.checked;                     // set again -> stays true (no toggle)
+              const h1 = hw.checked;                      // true by default
+              g('statTotalCell').click();                 // reset -> hw true, sw true, buy false
+              return { buy: [s1, s2, s3], hwDefault: h1, hwAfterReset: hw.checked, swAfterReset: sw.checked };
             })()
             """
         )
         ok = (
-            seq["buy"] == [False, True, False]          # click toggles, click again untoggles
-            and seq["hw"] == [True, False]              # HW chip on by default, cell click unchecks
+            seq["buy"] == [False, True, True]           # set-on is idempotent
             and seq["hwAfterReset"] and seq["swAfterReset"]  # first cell resets to defaults
         )
-        print(f"stat cell toggles + reset cell: buy={seq['buy']} hw={seq['hw']} reset(hw,sw)=({seq['hwAfterReset']},{seq['swAfterReset']}) -> {'OK' if ok else 'FAIL'}")
+        print(f"stat cells set-on + reset cell: buy={seq['buy']} reset(hw,sw)=({seq['hwAfterReset']},{seq['swAfterReset']}) -> {'OK' if ok else 'FAIL'}")
         if not ok:
             failed = True
 
