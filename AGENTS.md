@@ -28,13 +28,16 @@ factual data extracted from each primary publication cited in each
 **Image attribution is mandatory** for every entry. See `CONTRIBUTING.md` for the
 required `image_attribution` schema (`credit`, `source_url`, `license`, `retrieved`).
 
-- **Vendor product photos** (SENS-U/TENA, FloPatch, OEM USB Probe): credit the vendor,
+- **Vendor product photos** (SENS-U/TENA, OEM USB Probe): credit the vendor,
   note "Vendor product photo (used with attribution)", link to the canonical source URL.
+- **Paper figures** (WMAUS, PuLsE, MoUsE, USoP, Bashatah, Wang, FloPatch): credit the
+  authors and the source paper — CC BY where the paper is open access (TNSRE 2022,
+  arXiv, MDPI, Sci Rep), publisher author-copy attribution for USoP, and freely
+  accessible NIH author-manuscript figures via PubMed Central for Bashatah/Wang.
 - **Open-source documentation** (WULPUS, TinyProbe): credit the authors/lab, link to
   the GitHub repo, note the published license (CC-BY-4.0 for documentation).
-- **Original SVG illustrations** (WMAUS, PuLsE, MoUsE, USoP, Yin, Bashatah, Wang):
-  credit "Original illustration created for this catalog", license "CC0 / public
-  domain", `source_url: null`.
+- **SIG-WUS placeholder** (Yin): original graphic, CC0 — the JBHI 2022 paper is
+  closed access with no lawful open figure; replace when one becomes available.
 
 A consolidated list of every image credit, source URL, and license is maintained in
 the top-level `ATTRIBUTION.md` file.
