@@ -288,47 +288,57 @@ def main():
             failed = True
         await b.js("document.getElementById('contributeDialog').close()")
 
-        # ---- 4b. stat cells SET filters on; numbers stay static; reset unsets ALL
+        # ---- 4b. stat cells select ONLY their filter; cell number == visible cards
         seq = await b.js(
             """
             (() => {
               const g = (id) => document.getElementById(id);
-              const buy = g('buyableFilter'), hw = g('hwOpenFilter'), sw = g('swOpenFilter');
-              const numsBefore = [g('statTotal').textContent, g('statHw').textContent, g('statSw').textContent, g('statBuy').textContent];
-              const s1 = buy.checked;                     // false by default
-              g('statBuyCell').click();
-              const s2 = buy.checked;                     // set -> true
-              g('statBuyCell').click();
-              const s3 = buy.checked;                     // set again -> stays true
-              const numsDuring = [g('statTotal').textContent, g('statHw').textContent, g('statSw').textContent, g('statBuy').textContent];
-              g('statHwCell').click();                    // set-on on already-on HW: no change
-              g('statTotalCell').click();                 // reset -> EVERYTHING off
-              const numsAfter = [g('statTotal').textContent, g('statHw').textContent, g('statSw').textContent, g('statBuy').textContent];
-              return {
-                buy: [s1, s2, s3],
-                numsBefore, numsDuring: numsBefore === undefined ? null : numsBefore, numsAfter,
-                hwAfterReset: hw.checked, swAfterReset: sw.checked,
-                resetCount: g('resultCount').textContent,
-              };
+              const cards = () => document.querySelectorAll('.card').length;
+              const state = () => ({
+                cards: cards(),
+                hw: g('hwOpenFilter').checked, sw: g('swOpenFilter').checked, buy: g('buyableFilter').checked,
+                hwNum: g('statHw').textContent, swNum: g('statSw').textContent, buyNum: g('statBuy').textContent,
+                total: g('statTotal').textContent,
+              });
+              g('resetFilters').click();               // no filters: 12 cards
+              const base = state();
+              g('statHwCell').click();                 // only HW filter
+              const afterHw = state();
+              g('statSwCell').click();                 // only SW filter (HW switched off)
+              const afterSw = state();
+              g('statBuyCell').click();                // only Buy filter
+              const afterBuy = state();
+              g('statTotalCell').click();              // clear everything
+              const afterTotal = state();
+              // numbers must not depend on the active filters (search active here)
+              const si = g('searchInput');
+              si.value = 'tinyprobe';
+              si.dispatchEvent(new Event('input', { bubbles: true }));
+              const numsWithSearch = [g('statTotal').textContent, g('statHw').textContent, g('statSw').textContent, g('statBuy').textContent];
+              g('resetFilters').click();
+              return { base, afterHw, afterSw, afterBuy, afterTotal, numsWithSearch: numsWithSearch };
             })()
             """
         )
         ok = (
-            seq["buy"] == [False, True, True]                       # set-on idempotent
-            and seq["numsBefore"] == seq["numsAfter"]               # numbers static across filters
-            and not seq["hwAfterReset"] and not seq["swAfterReset"] # reset unsets ALL incl. HW/SW
-            and seq["resetCount"] == "12"                           # full catalog visible
+            seq["base"]["cards"] == 12
+            and seq["afterHw"]["cards"] == int(seq["afterHw"]["hwNum"]) == 4
+            and seq["afterHw"]["hw"] and not seq["afterHw"]["sw"] and not seq["afterHw"]["buy"]
+            and seq["afterSw"]["cards"] == int(seq["afterSw"]["swNum"]) == 3
+            and seq["afterSw"]["sw"] and not seq["afterSw"]["hw"] and not seq["afterSw"]["buy"]
+            and seq["afterBuy"]["cards"] == int(seq["afterBuy"]["buyNum"]) == 4
+            and seq["afterBuy"]["buy"] and not seq["afterBuy"]["hw"] and not seq["afterBuy"]["sw"]
+            and seq["afterTotal"]["cards"] == 12
+            and not seq["afterTotal"]["hw"] and not seq["afterTotal"]["sw"] and not seq["afterTotal"]["buy"]
+            and seq["numsWithSearch"] == ["12", "4", "3", "4"]
         )
         print(
-            f"stat cells set-on + full reset: buy={seq['buy']} "
-            f"nums static={seq['numsBefore'] == seq['numsAfter']} "
-            f"reset(hw,sw)=({seq['hwAfterReset']},{seq['swAfterReset']}) count={seq['resetCount']} -> {'OK' if ok else 'FAIL'}"
+            f"stat cells exclusive select: hw={seq['afterHw']['cards']}/{seq['afterHw']['hwNum']} "
+            f"sw={seq['afterSw']['cards']}/{seq['afterSw']['swNum']} buy={seq['afterBuy']['cards']}/{seq['afterBuy']['buyNum']} "
+            f"nums-static={seq['numsWithSearch'] == ['12', '4', '3', '4']} -> {'OK' if ok else 'FAIL'}"
         )
         if not ok:
             failed = True
-        # restore the default view for later checks
-        await b.js("[...document.querySelectorAll('.card')][0] && document.getElementById('hwOpenFilter').click() && document.getElementById('swOpenFilter').click()")
-        await asyncio.sleep(0.3)
 
         # ---- 5. card Improve opens edit-mode form, prefilled
         await b.js("[...document.querySelectorAll('.card')][0].querySelector('[data-contribute]').click()")

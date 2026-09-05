@@ -323,32 +323,38 @@ function render(list) {
   }
 }
 
-function renderCatalogStats() {
-  // Numbers always reflect the WHOLE catalog — independent of active filters.
-  const list = STATE.platforms;
-  const total = list.length;
-  const hwOpen = list.filter((p) => p.availability?.hw?.open_source === true).length;
-  const swOpen = list.filter((p) => p.availability?.sw?.open_source === true).length;
-  const buyable = list.filter((p) => p.availability?.purchase?.available === true).length;
+function countWithOnly(kind) {
+  // Number of platforms matching ONLY this one filter (other filters ignored).
+  const all = STATE.platforms;
+  if (kind === 'hw') return all.filter((p) => p.availability?.hw?.open_source === true).length;
+  if (kind === 'sw') return all.filter((p) => p.availability?.sw?.open_source === true).length;
+  if (kind === 'buy') return all.filter((p) => p.availability?.purchase?.available === true).length;
+  return all.length;
+}
 
-  if (els.statTotal) els.statTotal.textContent = total;
-  if (els.statHw) els.statHw.textContent = hwOpen;
-  if (els.statSw) els.statSw.textContent = swOpen;
-  if (els.statBuy) els.statBuy.textContent = buyable;
+function renderCatalogStats() {
+  // Each cell shows the number of platforms the catalog would display if that
+  // cell's filter were the only active one — so clicking a cell makes the
+  // number match the visible cards. The numbers do not depend on the current
+  // filter state.
+  if (els.statTotal) els.statTotal.textContent = countWithOnly('all');
+  if (els.statHw) els.statHw.textContent = countWithOnly('hw');
+  if (els.statSw) els.statSw.textContent = countWithOnly('sw');
+  if (els.statBuy) els.statBuy.textContent = countWithOnly('buy');
 
   // Reflect the active filters on the cells (aria-pressed + .stat-active)
-  const toggles = [
-    ['statTotalCell', null, 'All platforms — click to reset all filters'],
-    ['statHwCell', els.hwOpenFilter, 'Hardware designs that are open source — click to toggle the HW-open filter'],
-    ['statSwCell', els.swOpenFilter, 'Software that is open source — click to toggle the SW-open filter'],
-    ['statBuyCell', els.buyableFilter, 'Platforms you can buy — click to toggle the buyable filter'],
+  const cells = [
+    ['statTotalCell', null, 'Show all platforms — click to clear every filter'],
+    ['statHwCell', els.hwOpenFilter, 'Show only platforms with open-source hardware — applies this filter'],
+    ['statSwCell', els.swOpenFilter, 'Show only platforms with open-source software — applies this filter'],
+    ['statBuyCell', els.buyableFilter, 'Show only platforms you can buy — applies this filter'],
   ];
-  for (const [id, chip, title] of toggles) {
+  for (const [id, chip, title] of cells) {
     const cell = document.getElementById(id);
     if (!cell) continue;
-    const active = chip ? chip.checked : null;
-    cell.classList.toggle('stat-active', chip ? active : false);
-    cell.setAttribute('aria-pressed', chip ? String(active) : 'false');
+    const active = chip ? chip.checked : false;
+    cell.classList.toggle('stat-active', active);
+    cell.setAttribute('aria-pressed', String(active));
     cell.setAttribute('title', title);
   }
 }
@@ -661,7 +667,9 @@ async function init() {
   els.resetFilters.addEventListener('click', resetAll);
   els.resetEmpty.addEventListener('click', resetAll);
 
-  // Stat cells act as filter setters: total = reset, HW/SW/Buy = switch that chip ON
+  // Stat cells select exactly the filter they represent: clicking "HW source
+  // open" shows only HW-open platforms — the number displayed on the cell.
+  // The Platforms cell clears every filter.
   const statStrip = document.querySelector('.stats-strip');
   if (statStrip) {
     const applyStat = (cell) => {
@@ -670,9 +678,9 @@ async function init() {
         resetAll();
         return;
       }
-      const chip = { hw: els.hwOpenFilter, sw: els.swOpenFilter, buy: els.buyableFilter }[kind];
-      if (!chip) return;
-      chip.checked = true;
+      els.hwOpenFilter.checked = kind === 'hw';
+      els.swOpenFilter.checked = kind === 'sw';
+      els.buyableFilter.checked = kind === 'buy';
       update();
     };
     statStrip.addEventListener('click', (e) => {

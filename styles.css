@@ -941,6 +941,20 @@ button { font: inherit; }
   background: var(--primary-soft);
 }
 
+/* "no filters" — stands out from the chips so the clear-all action is obvious */
+.btn-nofilters {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+.btn-nofilters:hover {
+  background: var(--primary-strong);
+  border-color: var(--primary-strong);
+  color: #fff;
+}
+.btn-nofilters:focus-visible { outline: 2px solid var(--primary-strong); outline-offset: 2px; }
+
 /* contribute dialog + button ---------------------------------------------- */
 .contribute-btn {
   display: inline-flex;
