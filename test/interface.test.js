@@ -35,7 +35,7 @@ const htmlChecks = [
   ['contribute GitHub handoff link', 'id="contribGithub"'],
   ['contribute module script', 'src="contribute.js"'],
   ['disclaimer stats cell', 'stat-disclaimer-cell'],
-  ['disclaimer text', 'May contain inaccuracies'],
+  ['disclaimer text', 'May contain omissions and inaccuracies'],
   ['results-bar contribute button', 'id="contributeBtn"'],
 ];
 

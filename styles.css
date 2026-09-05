@@ -148,7 +148,7 @@ button { font: inherit; }
   margin-bottom: 6px;
 }
 .stat-cite-head .stat-cite-tag { margin-bottom: 0; }
-.stat-cite-logo { color: var(--primary); height: 19px; width: auto; }
+.stat-cite-logo { height: 26px; width: auto; max-width: 100%; object-fit: contain; }
 .stat-cite-tag {
   display: inline-block;
   font-size: 9px;
