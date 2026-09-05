@@ -41,6 +41,9 @@ publication that first described the platform (verified against the review paper
 - **TENA SmartCare Bladder Sensor** is a trademark of Essity AB.
 - **FloPatch** is a trademark of Flosonics Medical.
 - **Vermon OEM USB Probe** is a product of Vermon SA.
+- **IEEE** logo (`assets/ieee-logo.svg`) is a trademark of the Institute of Electrical
+  and Electronics Engineers. The logo geometry is public domain (textlogo, per Wikimedia
+  Commons); the mark is used to identify the review paper's publisher.
 - **WMAUS, WULPUS, PuLsE, MoUsE, USoP, TinyProbe** are research platforms named in
   peer-reviewed publications.
 

@@ -323,7 +323,9 @@ function render(list) {
   }
 }
 
-function renderCatalogStats(list) {
+function renderCatalogStats() {
+  // Numbers always reflect the WHOLE catalog — independent of active filters.
+  const list = STATE.platforms;
   const total = list.length;
   const hwOpen = list.filter((p) => p.availability?.hw?.open_source === true).length;
   const swOpen = list.filter((p) => p.availability?.sw?.open_source === true).length;
@@ -632,7 +634,7 @@ async function init() {
 
   populateSelect(els.categoryFilter, uniq(platforms.map((p) => p.category)), 'All categories', 'category');
   populateSelect(els.manufacturerFilter, uniq(platforms.map((p) => p.manufacturer)), 'Any manufacturer', 'manufacturer');
-  populateSelect(els.accessFilter, uniq(platforms.map((p) => p.access)), 'Any access', 'access');
+  renderCatalogStats();
   populateSelect(els.typeFilter, uniq(platforms.map((p) => inferInstitutionType(p))), 'Any type', 'type');
   populateSelect(els.yearFilter, uniq(platforms.map((p) => String(p.year))), 'Any year');
   renderCatalogStats(platforms);
@@ -753,15 +755,15 @@ async function init() {
 function update() {
   const list = applyFilters();
   render(list);
-  renderCatalogStats(list);
+  renderCatalogStats();
 }
 
 function resetAll() {
-  // Defaults: open HW + SW sources pre-selected, newest-first sort
+  // Unset every filter: no search, no chips, all selects cleared.
   els.searchInput.value = '';
   els.clearSearch.hidden = true;
-  els.hwOpenFilter.checked = true;
-  els.swOpenFilter.checked = true;
+  els.hwOpenFilter.checked = false;
+  els.swOpenFilter.checked = false;
   els.buyableFilter.checked = false;
   els.typeFilter.value = '';
   els.categoryFilter.value = '';

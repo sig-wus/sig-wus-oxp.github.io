@@ -288,30 +288,47 @@ def main():
             failed = True
         await b.js("document.getElementById('contributeDialog').close()")
 
-        # ---- 4b. stat cells SET their filters on (idempotent); first cell resets everything
+        # ---- 4b. stat cells SET filters on; numbers stay static; reset unsets ALL
         seq = await b.js(
             """
             (() => {
               const g = (id) => document.getElementById(id);
               const buy = g('buyableFilter'), hw = g('hwOpenFilter'), sw = g('swOpenFilter');
+              const numsBefore = [g('statTotal').textContent, g('statHw').textContent, g('statSw').textContent, g('statBuy').textContent];
               const s1 = buy.checked;                     // false by default
               g('statBuyCell').click();
               const s2 = buy.checked;                     // set -> true
               g('statBuyCell').click();
-              const s3 = buy.checked;                     // set again -> stays true (no toggle)
-              const h1 = hw.checked;                      // true by default
-              g('statTotalCell').click();                 // reset -> hw true, sw true, buy false
-              return { buy: [s1, s2, s3], hwDefault: h1, hwAfterReset: hw.checked, swAfterReset: sw.checked };
+              const s3 = buy.checked;                     // set again -> stays true
+              const numsDuring = [g('statTotal').textContent, g('statHw').textContent, g('statSw').textContent, g('statBuy').textContent];
+              g('statHwCell').click();                    // set-on on already-on HW: no change
+              g('statTotalCell').click();                 // reset -> EVERYTHING off
+              const numsAfter = [g('statTotal').textContent, g('statHw').textContent, g('statSw').textContent, g('statBuy').textContent];
+              return {
+                buy: [s1, s2, s3],
+                numsBefore, numsDuring: numsBefore === undefined ? null : numsBefore, numsAfter,
+                hwAfterReset: hw.checked, swAfterReset: sw.checked,
+                resetCount: g('resultCount').textContent,
+              };
             })()
             """
         )
         ok = (
-            seq["buy"] == [False, True, True]           # set-on is idempotent
-            and seq["hwAfterReset"] and seq["swAfterReset"]  # first cell resets to defaults
+            seq["buy"] == [False, True, True]                       # set-on idempotent
+            and seq["numsBefore"] == seq["numsAfter"]               # numbers static across filters
+            and not seq["hwAfterReset"] and not seq["swAfterReset"] # reset unsets ALL incl. HW/SW
+            and seq["resetCount"] == "12"                           # full catalog visible
         )
-        print(f"stat cells set-on + reset cell: buy={seq['buy']} reset(hw,sw)=({seq['hwAfterReset']},{seq['swAfterReset']}) -> {'OK' if ok else 'FAIL'}")
+        print(
+            f"stat cells set-on + full reset: buy={seq['buy']} "
+            f"nums static={seq['numsBefore'] == seq['numsAfter']} "
+            f"reset(hw,sw)=({seq['hwAfterReset']},{seq['swAfterReset']}) count={seq['resetCount']} -> {'OK' if ok else 'FAIL'}"
+        )
         if not ok:
             failed = True
+        # restore the default view for later checks
+        await b.js("[...document.querySelectorAll('.card')][0] && document.getElementById('hwOpenFilter').click() && document.getElementById('swOpenFilter').click()")
+        await asyncio.sleep(0.3)
 
         # ---- 5. card Improve opens edit-mode form, prefilled
         await b.js("[...document.querySelectorAll('.card')][0].querySelector('[data-contribute]').click()")
