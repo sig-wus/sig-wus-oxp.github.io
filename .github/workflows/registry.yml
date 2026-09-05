@@ -1,0 +1,48 @@
+# Keeps platforms/index.json in sync with the platforms/<id>/ directories.
+#
+# Attribution: written by GLM (glm-5.3-flash) via the Oh My Pi coding harness,
+# 2026-09-05, working with Dr. Richard Nauber on the SIG-WUS X-change repo.
+#
+# Contributors only create platforms/<id>/index.json — the registry list is a
+# generated artifact. On PRs the workflow fails if the manifest is stale
+# (platform dir without registry entry). On main it auto-commits the
+# regenerated manifest so merges never need a manual registry edit.
+
+name: Platform registry
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'platforms/**'
+      - '.github/workflows/registry.yml'
+  pull_request:
+    paths:
+      - 'platforms/**'
+      - '.github/workflows/registry.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check registry is up to date
+        run: python3 scripts/gen_registry.py --check
+
+      - name: Regenerate and commit (main only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          python3 scripts/gen_registry.py
+          if git diff --quiet platforms/index.json; then
+            echo "Registry unchanged."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add platforms/index.json
+            git commit -m "chore: regenerate platforms/index.json [skip ci]"
+            git push
+          fi

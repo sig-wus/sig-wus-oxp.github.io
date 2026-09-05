@@ -53,7 +53,10 @@ matches the BibTeX key in the source paper.
 5. Add `licenses/IMAGE.txt` under the same platform folder. Add
    `licenses/HARDWARE.txt` and `licenses/SOFTWARE.txt` when the entry includes
    corresponding source-license information.
-6. Append the new id to `platforms/index.json`.
+6. Nothing else — `platforms/index.json` is generated automatically. A GitHub
+   Action regenerates it on every push and verifies it on PRs (it fails if a
+   platform folder is missing from the registry). To refresh it manually, run
+   `python3 scripts/gen_registry.py`.
 7. Validate the entry locally (see below) and open a Pull Request against `main`.
 
 ### Creator verification badge

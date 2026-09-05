@@ -3,14 +3,16 @@
 Each platform entry lives in `platforms/<id>/index.json` and must conform to
 `platforms/_schema.json`.
 
-The registry list in `platforms/index.json` contains the ordered platform ids
-that the client loads at runtime.
+The registry list in `platforms/index.json` contains the platform ids that the
+client loads at runtime. It is a generated artifact — CI regenerates it from the
+`platforms/<id>/` directories (`scripts/gen_registry.py`); contributors never
+edit it by hand.
 
 ## Core Files
 
 | File | Purpose |
 |---|---|
-| `platforms/index.json` | Ordered list of platform ids. |
+| `platforms/index.json` | Generated list of platform ids (by `scripts/gen_registry.py`). |
 | `platforms/_schema.json` | JSON schema for a single platform entry. |
 | `platforms/<id>/index.json` | Canonical metadata for one platform. |
 

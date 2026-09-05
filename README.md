@@ -40,8 +40,10 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory .
 # Open http://127.0.0.1:8000 in a browser to view the UI
 ```
 
-The page loads platform ids from `platforms/index.json`, then each
-`platforms/<id>/index.json`, and finds Fuse.js under `vendor/`.
+The page loads the platform ids from `platforms/index.json` (a generated
+artifact — CI regenerates it from the `platforms/<id>/` folders, see
+`scripts/gen_registry.py`), then each `platforms/<id>/index.json`, and finds
+Fuse.js under `vendor/`.
 
 ## Adding new platforms
 See **[CONTRIBUTING.md](CONTRIBUTING.md) for the workflow. Each entry follows the JSON schema
