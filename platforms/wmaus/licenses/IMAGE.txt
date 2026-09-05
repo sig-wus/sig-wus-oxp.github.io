@@ -1,4 +1,5 @@
-Credit: Original illustration created for this catalog
-License: CC0 / public domain (original work)
-Source: n/a
-Retrieved: 2026-08
+Credit: Yang, X. et al., IEEE TNSRE 2022, Fig. 3 (same wearable ultrasound armband; open-access companion paper)
+License: CC BY 4.0
+Source: https://doi.org/10.1109/TNSRE.2022.3197875
+Retrieved: 2026-09
+Notes: Original TSMC 2021 paper (10.1109/TSMC.2019.2924984) is closed access; figure is from the same group's open follow-up describing the same hardware.

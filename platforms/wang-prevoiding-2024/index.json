@@ -34,12 +34,12 @@
   "paper": "https://doi.org/10.1109/JTEHM.2024.3457593",
   "github": null,
   "website": null,
-  "image": "assets/wang-prevoiding.svg",
+  "image": "assets/wang_fig2_fpc.jpg",
   "image_attribution": {
-    "credit": "Original illustration created for this catalog",
-    "source_url": null,
-    "license": "CC0 / public domain (original work)",
-    "retrieved": "2026-08"
+    "credit": "Wang, Dai & Liu, IEEE JTEHM 2024 — Figure 2 (PMC11505974)",
+    "source_url": "https://doi.org/10.1109/JTEHM.2024.3457593",
+    "license": "Freely accessible author manuscript (PubMed Central; published version © IEEE)",
+    "retrieved": "2026-09"
   },
   "availability": {
     "hw": {

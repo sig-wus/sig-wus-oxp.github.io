@@ -38,12 +38,12 @@
   "paper": "https://doi.org/10.1109/TSMC.2019.2924984",
   "github": null,
   "website": null,
-  "image": "assets/wmaus.svg",
+  "image": "assets/wmaus_tnsre2022_fig3.jpg",
   "image_attribution": {
-    "credit": "Original illustration created for this catalog",
-    "source_url": null,
-    "license": "CC0 / public domain (original work)",
-    "retrieved": "2026-08"
+    "credit": "Yang et al., IEEE TNSRE 2022 (CC BY 4.0) — Fig. 3",
+    "source_url": "https://doi.org/10.1109/TNSRE.2022.3197875",
+    "license": "CC BY 4.0 (open-access companion paper by the same group; shows the 8-channel wearable ultrasound armband)",
+    "retrieved": "2026-09"
   },
   "availability": {
     "hw": {

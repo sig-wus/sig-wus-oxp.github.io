@@ -39,12 +39,12 @@
   "paper": "https://doi.org/10.1109/JIOT.2025.3581380",
   "github": "https://github.com/alex-damian/pulse",
   "website": null,
-  "image": "assets/pulse.svg",
+  "image": "assets/pulse_fig3a.jpg",
   "image_attribution": {
-    "credit": "Original illustration created for this catalog",
-    "source_url": null,
-    "license": "CC0 / public domain (original work)",
-    "retrieved": "2026-08"
+    "credit": "Giordano et al., IEEE IoT Journal 2025 (arXiv:2410.16219) — Fig. 3(a)",
+    "source_url": "https://arxiv.org/abs/2410.16219",
+    "license": "CC BY 4.0 (arXiv author version)",
+    "retrieved": "2026-09"
   },
   "availability": {
     "hw": {

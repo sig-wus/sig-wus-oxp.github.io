@@ -1,4 +1,5 @@
-Credit: Original illustration created for this catalog
-License: CC0 / public domain (original work)
-Source: n/a
-Retrieved: 2026-08
+Credit: Wang, J., Dai, Z., Liu, X., IEEE JTEHM 2024, Figure 2
+License: Freely accessible author manuscript via PubMed Central (PMC11505974); published version (c) IEEE
+Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC11505974/
+Retrieved: 2026-09
+Notes: FPC-mounted 11-element transducer array photographs.

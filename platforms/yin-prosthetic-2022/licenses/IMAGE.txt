@@ -1,4 +1,5 @@
-Credit: Original illustration created for this catalog
+Credit: SIG-WUS placeholder — original graphic created for this catalog
 License: CC0 / public domain (original work)
 Source: n/a
-Retrieved: 2026-08
+Retrieved: 2026-09
+Notes: Primary paper (Yin et al., IEEE JBHI 2022, 10.1109/JBHI.2022.3203084) is closed access with no lawful open copy; placeholder marks the entry until a reproducible figure is available.

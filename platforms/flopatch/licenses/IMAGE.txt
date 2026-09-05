@@ -1,4 +1,5 @@
-Credit: Flosonics Medical
-License: All rights reserved (vendor product photo; used with attribution)
-Source: https://flosonicsmedical.com/flopatch/
-Retrieved: 2026-08
+Credit: Kenny, J.-E. et al., Scientific Reports 2021, Figure 3(e)
+License: CC BY 4.0
+Source: https://doi.org/10.1038/s41598-021-87116-y
+Retrieved: 2026-09
+Notes: Photograph of the fabricated CW Doppler patch on adhesive film.

@@ -37,12 +37,12 @@
   "paper": "https://doi.org/10.1038/s41587-023-01800-0",
   "github": null,
   "website": null,
-  "image": "assets/usop.svg",
+  "image": "assets/usop_fig1a.jpg",
   "image_attribution": {
-    "credit": "Original illustration created for this catalog",
-    "source_url": null,
-    "license": "CC0 / public domain (original work)",
-    "retrieved": "2026-08"
+    "credit": "Lin et al., Nature Biotechnology 2023 — Fig. 1(a) (author copy, Xu Lab UCSD)",
+    "source_url": "https://doi.org/10.1038/s41587-023-01800-0",
+    "license": "© Springer Nature (author-hosted copy, used with attribution; figure credit Lin et al.)",
+    "retrieved": "2026-09"
   },
   "availability": {
     "hw": {

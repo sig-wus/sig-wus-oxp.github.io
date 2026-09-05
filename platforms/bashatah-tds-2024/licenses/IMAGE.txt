@@ -1,4 +1,5 @@
-Credit: Original illustration created for this catalog
-License: CC0 / public domain (original work)
-Source: n/a
-Retrieved: 2026-08
+Credit: Bashatah, A. et al., IEEE TBME 2024, Figure 2
+License: Freely accessible author manuscript via PubMed Central (PMC11639583, NIH Public Access Policy); published version (c) IEEE
+Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC11639583/
+Retrieved: 2026-09
+Notes: Wearable TDS band with four encased transducers, PCB and block diagram.

@@ -36,12 +36,12 @@
   "paper": "https://doi.org/10.1109/TBME.2024.3414419",
   "github": null,
   "website": null,
-  "image": "assets/bashatah-tds.svg",
+  "image": "assets/bashatah_fig2.jpg",
   "image_attribution": {
-    "credit": "Original illustration created for this catalog",
-    "source_url": null,
-    "license": "CC0 / public domain (original work)",
-    "retrieved": "2026-08"
+    "credit": "Bashatah et al., IEEE TBME 2024 — Figure 2 (PMC11639583, NIH author manuscript)",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11639583/",
+    "license": "Freely accessible author manuscript (NIH Public Access Policy; published version © IEEE)",
+    "retrieved": "2026-09"
   },
   "availability": {
     "hw": {
