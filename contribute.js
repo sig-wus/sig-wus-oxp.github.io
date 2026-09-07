@@ -38,7 +38,6 @@ export function openContributor(entry) {
     prefill(pre);
   }
   els.idInput.readOnly = mode === 'edit';
-  els.indexStep.hidden = mode === 'edit';
   ensureSchema();
   rebuild();
   els.dialog.showModal();
@@ -161,8 +160,6 @@ function editFileUrl(id) {
   return `https://github.com/${REPO}/edit/${BRANCH}/platforms/${id}/index.json`;
 }
 
-const INDEX_EDIT_URL = `https://github.com/${REPO}/edit/${BRANCH}/platforms/index.json`;
-
 // -- live rebuild + validation ----------------------------------------------
 
 function rebuild() {
@@ -230,7 +227,7 @@ async function ensureSchema() {
 function init() {
   const required = {
     dialog: 'contributeDialog', form: 'contribForm', json: 'contribJson', status: 'contribStatus',
-    copy: 'contribCopy', github: 'contribGithub', indexStep: 'contribIndexStep', imageStep: 'contribImageStep',
+    copy: 'contribCopy', github: 'contribGithub', imageStep: 'contribImageStep',
     mode: 'contribMode', title: 'contribTitle', close: 'contribClose',
     idInput: 'cf_id',
   };
@@ -262,7 +259,6 @@ function init() {
     if (!els.github.hasAttribute('href')) e.preventDefault();
   });
 
-  els.indexStep.href = INDEX_EDIT_URL;
   rebuild();
 }
 
