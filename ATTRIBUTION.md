@@ -20,6 +20,7 @@ summarises the credits for the device imagery.
 | Yin Prosthetic Wristband | `yin-prosthetic.svg` | SIG-WUS placeholder — original graphic created for this catalog | — | CC0 / public domain | 2026-09 |
 | Bashatah TDS Band | `bashatah_fig2.jpg` | Bashatah et al., IEEE TBME 2024 — Figure 2 (NIH manuscript, PMC11639583) | https://pmc.ncbi.nlm.nih.gov/articles/PMC11639583/ | Author manuscript (published © IEEE) | 2026-09 |
 | Wang Pre-Voiding Alarm | `wang_fig2_fpc.jpg` | Wang, Dai & Liu, IEEE JTEHM 2024 — Figure 2 (PMC11505974) | https://doi.org/10.1109/JTEHM.2024.3457593 | Author manuscript (published © IEEE) | 2026-09 |
+| IUP | `iup_v0.2_stack.webp` | Robert Kunz, TU Bergakademie Freiberg — MSE Lab | — | CC-BY-4.0 | 2026-09 |
 
 ## Catalog source
 
