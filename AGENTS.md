@@ -43,8 +43,12 @@ A consolidated list of every image credit, source URL, and license is maintained
 the top-level `ATTRIBUTION.md` file.
 
 ## Layout
-The site is now a self-contained catalog component (header / footer / about section
-removed in commit `92d6540` so it can be embedded into the parent SIG-WUS page).
+The page mirrors the parent site's header (lockup + nav), copied in markup
+and CSS from https://sig-wus.org/ so the catalog reads as one of its subpages.
+The header/wrap markup lives in `index.html`; the shared-header styles live in
+`styles.css` under `--sg-*` tokens (fixed light theme — the parent has no dark
+mode). The lockup and the first nav link point back to the main site. Keep
+this header in sync if the parent site's header changes.
 
 ## Dev server
 ```bash

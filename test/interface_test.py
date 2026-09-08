@@ -57,11 +57,13 @@ for checks, text, fname in [
             print(f'{fname} missing {name}')
             failed = True
 
-# No external resource dependencies (scripts, styles, iframes, imports)
+# No external resource dependencies (scripts, styles, iframes, imports).
+# Hyperlink tags (outbound <a href=...>) are fine — the DHCP/self-containment
+# policy only covers resources the browser fetches while rendering.
 external = [
     line.strip() for line in html.splitlines()
     if ('src="http' in line or 'href="http' in line)
-    and 'rel="noopener' not in line  # outbound hyperlinks are fine
+    and not line.lstrip().startswith('<a ')
 ]
 if external:
     print('External resource dependencies found:')
