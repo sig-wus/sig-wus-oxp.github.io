@@ -43,8 +43,11 @@ A consolidated list of every image credit, source URL, and license is maintained
 the top-level `ATTRIBUTION.md` file.
 
 ## Layout
-The page mirrors the parent site's header (lockup + nav), copied in markup
+The page mirrors the parent site's header, copied in markup
 and CSS from https://sig-wus.org/ so the catalog reads as one of its subpages.
+The header shows the parent lockup plus an "OXP / Open Exchange Platform"
+sub-brand lockup (stylized exchange-cycle + ultrasound-probe SVG mark, also
+used as `assets/logo.svg` favicon), separated by a hairline divider.
 The header/wrap markup lives in `index.html`; the shared-header styles live in
 `styles.css` under `--sg-*` tokens (fixed light theme — the parent has no dark
 mode). The lockup and the first nav link point back to the main site. Keep

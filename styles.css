@@ -129,7 +129,27 @@ header.site .wrap { padding-top: 0; padding-bottom: 0; }
 }
 .site-links a { color: var(--sg-accent); }
 .site-links a:hover { color: var(--sg-accent); }
-@media (max-width: 700px) { .wrap-header { justify-content: center; } }
+
+/* parent + OXP lockups sit side by side, separated by a hairline */
+.brand-cluster {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.brand-divider {
+  width: 1px;
+  height: 34px;
+  background: var(--sg-line);
+  flex: none;
+}
+.lockup-oxp .oxp-mark { width: 40px; height: 40px; }
+.lockup-oxp .wm-name { font-size: 19px; }
+@media (max-width: 700px) {
+  .brand-divider { display: none; }
+  .brand-cluster { gap: 8px 22px; }
+}
+@media (max-width: 700px) { .site-inner { justify-content: center; } }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 
 .skip-link {

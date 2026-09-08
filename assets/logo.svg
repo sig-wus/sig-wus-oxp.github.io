@@ -1,24 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SIG-WUS logo">
-  <defs>
-    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#0b6ea8"/>
-      <stop offset="1" stop-color="#0b3a5c"/>
-    </linearGradient>
-    <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="#62c8e8" stop-opacity=".95"/>
-      <stop offset="1" stop-color="#62c8e8" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#g1)"/>
-  <!-- ultrasound waves + drop -->
-  <g fill="none" stroke="url(#g2)" stroke-width="2.4" stroke-linecap="round">
-    <path d="M14 38 Q20 32 26 38"/>
-    <path d="M10 44 Q20 34 30 44"/>
-    <path d="M6 50 Q20 36 34 50"/>
-  </g>
-  <g fill="#fff">
-    <path d="M40 18 q-9 6 -9 16 a9 9 0 0 0 18 0 q0 -10 -9 -16 z" fill="#ffffff"/>
-    <circle cx="40" cy="34" r="3.2" fill="#0b6ea8"/>
-  </g>
-  <text x="32" y="60" font-family="Inter,Arial" font-size="9" font-weight="700" fill="#62c8e8" text-anchor="middle" letter-spacing="1">SIG-WUS</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Open Exchange Platform (OXP) logo">
+  <!-- Open Exchange Platform mark: exchange cycle around an ultrasound probe.
+       Same geometry as the header mark in index.html; fixed colors so the
+       file renders standalone (favicon, bookmarks). -->
+  <path d="M 10.75 26.31 A 22 22 0 0 1 53.25 26.31" fill="none" stroke="#013A5E" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 55.66 25.88 L 54.49 30.94 L 50.95 27.14" fill="none" stroke="#013A5E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 53.25 37.69 A 22 22 0 0 1 10.75 37.69" fill="none" stroke="#00629B" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 8.34 38.12 L 9.51 33.06 L 13.05 36.86" fill="none" stroke="#00629B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="17" y="35" width="10" height="10" rx="3" fill="#013A5E"/>
+  <path d="M 26.00 33.44 Q 30.53 33.88 29.39 38.28" fill="none" stroke="#4A9BC7" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 28.00 29.97 Q 35.11 30.67 33.33 37.59" fill="none" stroke="#4A9BC7" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M 30.00 26.51 Q 39.70 27.45 37.27 36.90" fill="none" stroke="#8FC3DE" stroke-width="2.2" stroke-linecap="round"/>
 </svg>

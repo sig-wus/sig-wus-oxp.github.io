@@ -25,23 +25,44 @@
        The lockup and the first nav link link back to the main site. -->
   <header class="site">
     <div class="wrap site-inner">
-      <a class="lockup" href="https://sig-wus.org/" aria-label="SIG-WUS — back to the main site">
-        <svg viewBox="0 0 512 512" aria-hidden="true">
-          <path d="M 36 300 Q 256 180 476 300" fill="none" stroke="var(--sg-mark-skin)" stroke-width="22" stroke-linecap="round"/>
-          <rect x="192" y="166" width="128" height="72" rx="20" fill="var(--sg-mark-patch)"/>
-          <rect x="216" y="212" width="12" height="16" rx="3" fill="var(--sg-mark-tick)"/>
-          <rect x="240" y="212" width="12" height="16" rx="3" fill="var(--sg-mark-tick)"/>
-          <rect x="264" y="212" width="12" height="16" rx="3" fill="var(--sg-mark-tick)"/>
-          <rect x="288" y="212" width="12" height="16" rx="3" fill="var(--sg-mark-tick)"/>
-          <path d="M 321.5 295.9 A 80 80 0 0 1 190.5 295.9" fill="none" stroke="var(--sg-mark-w1)" stroke-width="16" stroke-linecap="round"/>
-          <path d="M 362.5 324.6 A 130 130 0 0 1 149.5 324.6" fill="none" stroke="var(--sg-mark-w2)" stroke-width="14" stroke-linecap="round"/>
-          <path d="M 403.4 353.2 A 180 180 0 0 1 108.6 353.2" fill="none" stroke="var(--sg-mark-w3)" stroke-width="12" stroke-linecap="round"/>
-        </svg>
-        <div>
-          <div class="wm-name">SIG-WUS</div>
-          <div class="wm-sub">Wearable Ultrasound</div>
-        </div>
-      </a>
+      <div class="brand-cluster">
+        <a class="lockup lockup-parent" href="https://sig-wus.org/" aria-label="SIG-WUS — back to the main site">
+          <svg viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M 36 300 Q 256 180 476 300" fill="none" stroke="var(--sg-mark-skin)" stroke-width="22" stroke-linecap="round"/>
+            <rect x="192" y="166" width="128" height="72" rx="20" fill="var(--sg-mark-patch)"/>
+            <rect x="216" y="212" width="12" height="16" rx="3" fill="var(--sg-mark-tick)"/>
+            <rect x="240" y="212" width="12" height="16" rx="3" fill="var(--sg-mark-tick)"/>
+            <rect x="264" y="212" width="12" height="16" rx="3" fill="var(--sg-mark-tick)"/>
+            <rect x="288" y="212" width="12" height="16" rx="3" fill="var(--sg-mark-tick)"/>
+            <path d="M 321.5 295.9 A 80 80 0 0 1 190.5 295.9" fill="none" stroke="var(--sg-mark-w1)" stroke-width="16" stroke-linecap="round"/>
+            <path d="M 362.5 324.6 A 130 130 0 0 1 149.5 324.6" fill="none" stroke="var(--sg-mark-w2)" stroke-width="14" stroke-linecap="round"/>
+            <path d="M 403.4 353.2 A 180 180 0 0 1 108.6 353.2" fill="none" stroke="var(--sg-mark-w3)" stroke-width="12" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="wm-name">SIG-WUS</div>
+            <div class="wm-sub">Wearable Ultrasound</div>
+          </div>
+        </a>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <a class="lockup lockup-oxp" href="." aria-label="Open Exchange Platform (OXP) — you are here">
+          <svg class="oxp-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <!-- Exchange cycle: two clockwise arcs with tangent arrowheads … -->
+            <path d="M 10.75 26.31 A 22 22 0 0 1 53.25 26.31" fill="none" stroke="var(--sg-mark-skin)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M 55.66 25.88 L 54.49 30.94 L 50.95 27.14" fill="none" stroke="var(--sg-mark-skin)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 53.25 37.69 A 22 22 0 0 1 10.75 37.69" fill="none" stroke="var(--sg-mark-w1)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M 8.34 38.12 L 9.51 33.06 L 13.05 36.86" fill="none" stroke="var(--sg-mark-w1)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- … around a transducer probe emitting a wave fan to the upper right -->
+            <rect x="17" y="35" width="10" height="10" rx="3" fill="var(--sg-mark-skin)"/>
+            <path d="M 26.00 33.44 Q 30.53 33.88 29.39 38.28" fill="none" stroke="var(--sg-mark-w2)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 28.00 29.97 Q 35.11 30.67 33.33 37.59" fill="none" stroke="var(--sg-mark-w2)" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M 30.00 26.51 Q 39.70 27.45 37.27 36.90" fill="none" stroke="var(--sg-mark-w3)" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="wm-name">OXP</div>
+            <div class="wm-sub">Open Exchange Platform</div>
+          </div>
+        </a>
+      </div>
       <nav class="site-links" aria-label="Site">
         <a href="https://sig-wus.org/">sig-wus.org</a>
         <a href="https://sig-wus.org/#news">News</a>
