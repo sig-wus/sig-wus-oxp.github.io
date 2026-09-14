@@ -1,0 +1,67 @@
+{
+    "platform": "BioGAP WULPUS-pro",
+    "id": "biogap-wulpus-pro",
+    "manufacturer": "ETH Zürich",
+    "affiliation": "Integrated Systems Laboratory (IIS)",
+    "year": 2026,
+    "category": "Pulse-echo non-imaging",
+    "application": "Hand-gesture HMI, US-EMG fusion",
+    "verified_at": "2026-09-14",
+    "github": "https://github.com/pulp-bio/sensei-us-shield",
+    "website": null,
+    "image": "assets/BioGAP_WULPUS_pro.jpg",
+    "transducer": {
+        "channels": 16,
+        "field_of_view": "n/a"
+    },
+    "tx": {
+        "voltage": "30 V",
+        "frequency": "up to 10 MHz"
+    },
+    "rx": {
+        "channels": 1,
+        "sample_rate": "8 MS/s",
+        "topology": "16-to-1 MUX"
+    },
+    "controller": "MSP430FR5043 (SoC) — sequencer + on-device ML",
+    "data_link": "Bluetooth LE (raw, 1.4 Mbit/s)",
+    "specs": {
+        "framerate": "100 Hz"
+    },
+    "access": "open-source",
+    "access_detail": "Hardware (Solderpad v0.51) + firmware (BSD and Apache 2.0) + host software (Apache-2.0)",
+    "description": "The WULPUS PRO shield is a 16-channel, time-multiplexed ultrasound front-end for the BioGAP-Ultra wearable edge-AI platform. It is a successor of the WULPUS and WULPUS-pro projects and combines high-voltage pulse generation, transmit/receive channel selection, a programmable receive chain, and an MSP430FR5043 ultrasound controller on a compact BioGAP-compatible shield.",
+    "availability": {
+        "hw": {
+            "open_source": true,
+            "schematics": "open",
+            "gerber": "open",
+            "bom": "open",
+            "license": "Solderpad v0.51",
+            "notes": null,
+            "reference": "https://github.com/pulp-bio/sensei-us-shield/tree/main"
+        },
+        "sw": {
+            "open_source": true,
+            "firmware": "open",
+            "host_software": "open",
+            "license": "BSD and Apache 2.0",
+            "notes": null,
+            "reference": "https://github.com/pulp-bio/biogui"
+        },
+        "purchase": {
+            "available": false,
+            "channel": null,
+            "url": null,
+            "price_usd": null,
+            "price_eur": null,
+            "price_note": null
+        }
+    },
+    "image_attribution": {
+        "credit": "ETH Zürich — IIS (Sebastian Frey)",
+        "license": "CC-BY-4.0",
+        "retrieved": "2026-09-14",
+        "source_url": "https://github.com/pulp-bio/sensei-us-shield/blob/main/docs/images/WULPUS_pro_BioGAP_shield.jpg"
+    }
+}

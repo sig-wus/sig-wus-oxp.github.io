@@ -1,0 +1,4 @@
+Credit: ETH Zürich — IIS (Sebastian Frey)
+License: CC-BY-4.0
+Source: https://github.com/pulp-bio/sensei-us-shield/blob/main/docs/images/WULPUS_pro_BioGAP_shield.jpg
+Retrieved: 2026-09
