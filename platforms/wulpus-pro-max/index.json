@@ -1,0 +1,70 @@
+{
+  "platform": "WULPUS Pro Max",
+  "id": "wulpus-pro-max",
+  "manufacturer": "Sergei Vostrikov and contributors",
+  "affiliation": null,
+  "year": 2026,
+  "category": "Pulse-echo imaging",
+  "application": "Wearable B-mode imaging and pulse-echo sensing",
+  "reference": "wulpus_pro_repo_sergio5714_2026",
+  "github": "https://github.com/Sergio5714/wulpus-pro-max",
+  "website": null,
+  "image": "assets/wulpus_pro_max_sigwus.jpg",
+  "transducer": {
+    "channels": 16,
+    "config": "Time-multiplexed array; PZT or CMUT"
+  },
+  "tx": {
+    "voltage": "30 V unipolar",
+    "frequency": "100 kHz to 10 MHz"
+  },
+  "rx": {
+    "channels": 1,
+    "sample_rate": "8 MS/s",
+    "topology": "16-to-1 MUX"
+  },
+  "controller": "MSP430 acquisition controller; ESP32 Wi-Fi/USB host",
+  "data_link": "USB CDC, Wi-Fi (TCP); legacy BLE option",
+  "specs": {
+    "framerate": "up to 500 Hz PRF (1 channel) or 18 FPS in B-mode (16 channels)",
+    "weight": "10 g (acquisition + Wi-Fi host boards)",
+    "size": "39 x 21 x 13 mm (stacked boards)",
+    "power": "40 mW at 50 Hz PRF (acquisition front end)"
+  },
+  "access": "open-source",
+  "access_detail": "Open hardware (Solderpad v0.51), software (Apache-2.0), and Firmware (Apache-2.0, see repository)",
+  "description": "WULPUS Pro Max is a complete wearable ultrasound acquisition system designed for pulse-echo sensing and B-mode imaging. It features a 16-channel, time-multiplexed front end compatible with PZT and CMUT transducers. A companion ESP32-C6 board enables raw data streaming over USB or Wi-Fi at pulse repetition frequencies (PRFs) of up to 500 Hz. The system operates through a single USB-C connection in wired mode or on battery power in wireless mode. An intuitive desktop GUI simplifies system configuration, real-time visualization, and firmware updates, enabling quick and straightforward setup.",
+  "availability": {
+    "hw": {
+      "open_source": true,
+      "schematics": "open",
+      "gerber": "open",
+      "bom": "open",
+      "license": "Solderpad v0.51",
+      "notes": "Acquisition and Wi-Fi host boards can be ordered as separate PCBWay shared projects or self-built.",
+      "reference": "https://github.com/Sergio5714/wulpus-pro-max/tree/main/hw"
+    },
+    "sw": {
+      "open_source": true,
+      "firmware": "open",
+      "host_software": "open",
+      "license": "Apache-2.0 (project-authored code; third-party firmware licenses vary)",
+      "notes": null,
+      "reference": "https://github.com/Sergio5714/wulpus-pro-max/tree/main/sw"
+    },
+    "purchase": {
+      "available": true,
+      "channel": "PCBWay shared projects (separate acquisition and Wi-Fi host boards)",
+      "url": "https://github.com/Sergio5714/wulpus-pro-max#build-instructions",
+      "price_usd": 260,
+      "price_eur": 230,
+      "price_note": "Approximate mid-2026 prices for both boards: 220 USD for the acquisition PCB and 40 USD for the Wi-Fi host PCB. Actual prices vary by quantity, assembly, and date."
+    }
+  },
+  "image_attribution": {
+    "credit": "Sergei Vostrikov",
+    "source_url": "https://github.com/Sergio5714/wulpus-pro-max/tree/main/docs/images",
+    "license": "CC BY-ND 4.0",
+    "retrieved": "2026-10"
+  }
+}

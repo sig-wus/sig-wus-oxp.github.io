@@ -1,0 +1,2 @@
+License: Apache-2.0 for host software and project-authored firmware; bundled third-party firmware has its own terms.
+Reference: https://github.com/Sergio5714/wulpus-pro-max#license

@@ -1,0 +1,2 @@
+License: Solderpad v0.51
+Reference: https://github.com/Sergio5714/wulpus-pro-max/tree/main/hw

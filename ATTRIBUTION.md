@@ -11,6 +11,7 @@ summarises the credits for the device imagery.
 | SENS-U (TENA SmartCare) | `sense-u-hero.jpg` | TENA (Essity) / Novioscan | https://bladdersensor.tena.com/ | Vendor product photo (used with attribution) | 2026-08 |
 | WMAUS | `wmaus_tnsre2022_fig3.jpg` | Yang et al., IEEE TNSRE 2022 — Fig. 3 (same armband; open companion paper) | https://doi.org/10.1109/TNSRE.2022.3197875 | CC BY 4.0 | 2026-09 |
 | WULPUS | `wulpus_main.png` | ETH Zürich — IIS / BSSE (Vostrikov et al.) | https://github.com/pulp-bio/wulpus/blob/main/docs/images/wulpus_main.png | CERN-OHL-S 2.0 (HW) / CC-BY-4.0 (docs) | 2026-08 |
+| WULPUS Pro Max | `wulpus_pro_max_sigwus.jpg` | Sergei Vostrikov | https://github.com/Sergio5714/wulpus-pro-max/tree/main/docs/images | CC BY-ND 4.0 | 2026-10 |
 | PuLsE | `pulse_fig3a.jpg` | Giordano et al., IEEE IoT-J 2025 (arXiv:2410.16219) — Fig. 3(a) | https://arxiv.org/abs/2410.16219 | CC BY 4.0 (arXiv version) | 2026-09 |
 | MoUsE | `mouse_fig1d.jpg` | Fournelle et al., Sensors 2021 (MDPI) — Figure 1(d) | https://doi.org/10.3390/s21196481 | CC BY 4.0 | 2026-09 |
 | OEM USB Probe | `oem-probe.jpg` | Vermon SA | https://vermon.com/oem-usb-probe/ | Vendor product photo (used with attribution) | 2026-08 |
